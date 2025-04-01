@@ -1,5 +1,5 @@
-import { forwardRef, ButtonHTMLAttributes, ForwardedRef, ReactNode } from "react";
-import * as styles from "./style.css";
+import { forwardRef, ButtonHTMLAttributes, ForwardedRef, ReactNode } from 'react';
+import * as styles from './style.css';
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   children?: ReactNode;
@@ -8,13 +8,10 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 export const Button = forwardRef(
   ({ children, ...props }: Props, ref: ForwardedRef<HTMLButtonElement>) => {
     return (
-      <button
-        {...props}
-        ref={ref}
-        className={styles.root}
-      >
+      <button {...props} ref={ref} className={styles.root}>
         {children}
       </button>
     );
-  });
-Button.displayName = "Button";
+  }
+);
+Button.displayName = 'Button';

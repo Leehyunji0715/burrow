@@ -9,7 +9,7 @@ export const themeContract = createThemeContract({
     danger: 'danger',
     text: 'black',
   },
-})
+});
 
 export const lightTheme = createTheme(themeContract, {
   colors: {
