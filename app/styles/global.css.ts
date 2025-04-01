@@ -10,4 +10,5 @@ globalStyle('html', {
 globalStyle('body, *', {
   margin: 0,
   padding: 0,
+  overflowX: 'hidden',
 });

@@ -12,7 +12,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-     "app/**/*": "prettier --write --ignore-unknown"
+     "app/**/*.{ts,tsx}": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "@remix-run/node": "^2.16.3",
