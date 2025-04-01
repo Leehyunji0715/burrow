@@ -1,4 +1,4 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { themeContract } from '~/styles/themes.css';
 
 export const base = style({
@@ -10,10 +10,31 @@ export const header = style({
   height: '97vh',
   color: themeContract.colors.text,
   background: `linear-gradient(to left, ${themeContract.colors.primary}, ${themeContract.colors.secondary})`,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
+export const messageContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  textTransform: 'uppercase',
+});
+
+export const mainMessage = style({
+  fontSize: '10rem',
+  letterSpacing: 10,
+});
+
+export const subMessage = style({
+  fontSize: '5rem',
+  letterSpacing: 2,
 });
 
 export const wave = style({
-  width: '100vw',
+  width: '110vw',
   position: 'absolute',
   bottom: '-8%',
 });

@@ -18,7 +18,8 @@ export const lightTheme = createTheme(themeContract, {
     highlight: '#ffac00',
     highlightText: 'white',
     danger: '#e74c3c',
-    text: 'black',
+    text: 'white',
+    // text: 'black',
   },
 });
 
