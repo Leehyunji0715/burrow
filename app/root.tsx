@@ -1,8 +1,7 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import type { LinksFunction } from '@remix-run/node';
-
-import { lightTheme } from '~/styles/themes.css';
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import '~/styles/global.css';
+import { lightTheme } from '~/styles/themes.css';
 
 export const links: LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
