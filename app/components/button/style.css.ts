@@ -3,7 +3,7 @@ import { themeContract } from '~/styles/themes.css';
 
 export const root = style({
   color: themeContract.colors.highlightText,
-  border: '2px solid currentColor',
+  border: 'none',
   padding: '.5rem 1rem',
   borderRadius: 7,
   background: themeContract.colors.highlight,

@@ -6,3 +6,8 @@ globalStyle('html', {
   fontSize: '62.5%',
   color: themeContract.colors.text,
 });
+
+globalStyle('body, *', {
+  margin: 0,
+  padding: 0,
+});

@@ -10,12 +10,6 @@ export default function Index() {
     <div className='flex h-screen items-center justify-center'>
       <div className='flex flex-col items-center gap-16'>
         <Header />
-        <header className='flex flex-col items-center gap-9'>
-          <h1>
-            Welcome to <span className=''>Remix</span>
-          </h1>
-          <Button>CLICK!</Button>
-        </header>
       </div>
     </div>
   );
