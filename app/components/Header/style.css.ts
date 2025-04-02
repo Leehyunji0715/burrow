@@ -7,13 +7,21 @@ export const base = style({
 });
 
 export const header = style({
+  position: 'relative',
   height: '97vh',
   color: themeContract.colors.text,
-  background: `linear-gradient(to left, ${themeContract.colors.primary}, ${themeContract.colors.secondary})`,
+  background: `linear-gradient(to left, ${themeContract.colors.primary}, ${themeContract.colors.secondary})`
+});
+
+export const mainContainer = style({
+  position: 'absolute',
+  top: '40%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
   alignItems: 'center',
+  overflow: 'hidden'
 });
 
 export const messageContainer = style({
@@ -21,6 +29,7 @@ export const messageContainer = style({
   flexDirection: 'column',
   alignItems: 'center',
   textTransform: 'uppercase',
+  gap: ".75rem"
 });
 
 export const mainMessage = style({

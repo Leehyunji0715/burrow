@@ -21,3 +21,9 @@ globalStyle('body, *', {
   padding: 0,
   overflowX: 'hidden',
 });
+
+
+globalStyle('a, a:link, a:visited', {
+  color: 'currentColor',
+  textDecoration: 'none',
+});

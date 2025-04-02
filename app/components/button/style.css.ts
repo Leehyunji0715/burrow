@@ -4,8 +4,8 @@ import { themeContract } from '~/styles/themes.css';
 export const root = style({
   color: themeContract.colors.highlightText,
   border: 'none',
-  padding: '.5rem 1rem',
-  borderRadius: 7,
+  padding: '.75rem 1.5rem',
+  borderRadius: 100,
   background: themeContract.colors.highlight,
   ':hover': {
     transform: 'translateY(-1.5px)',
