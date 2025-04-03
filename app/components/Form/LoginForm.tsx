@@ -4,7 +4,7 @@ import { Flex, Text } from '@radix-ui/themes';
 
 import { Button, InputText } from '~/components';
 import utils from '~/styles/utils.css';
-import * as styles from './loginForm.css';
+import * as styles from './form.css';
 
 export const LoginForm = () => {
     return (
@@ -12,7 +12,7 @@ export const LoginForm = () => {
             <h1 className={styles.heading}>Login</h1>
             <Form.Field className={styles.formField} name="email">
                 <Flex justify='between'>
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label className={styles.formRequiredLabel}>Email</Form.Label>
                     <Form.Message className={styles.formMessage} match="valueMissing">
                         Please enter your Email
                     </Form.Message>
@@ -26,7 +26,7 @@ export const LoginForm = () => {
             </Form.Field>
             <Form.Field className={styles.formField} name="question">
                 <Flex justify='between'>
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label className={styles.formRequiredLabel}>Password</Form.Label>
                     <Form.Message className={styles.formMessage} match="valueMissing">
                         Please enter your password
                     </Form.Message>

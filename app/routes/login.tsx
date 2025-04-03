@@ -1,6 +1,5 @@
 import { Link } from '@remix-run/react';
-import { Text } from '@radix-ui/themes';
-import { LoginForm } from '~/components/Form/LoginForm';
+import { LoginForm } from '~/components/';
 import * as styles from './login.css';
 
 export default function Login() {

@@ -20,6 +20,21 @@ export const formField = style({
     width: '100%'
 })
 
+const required = style({
+    position: 'relative',
+    width: 'auto',
+    '::after': {
+        content: '*',
+        color: themeContract.colors.danger,
+        position: 'absolute',
+        top: '-5px',
+        right: '-13px'
+    }
+})
+
+export const formLabel = style({})
+export const formRequiredLabel = style([required, {}])
+
 export const formMessage = style({
     color: themeContract.colors.danger
 })

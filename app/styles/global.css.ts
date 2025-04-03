@@ -7,10 +7,13 @@ globalStyle('html', {
   color: themeContract.colors.text,
 });
 
+globalStyle('body', {
+  overflowX: 'hidden'
+});
+
 globalStyle('body, *', {
   margin: 0,
-  padding: 0,
-  overflowX: 'hidden',
+  padding: 0
 });
 
 globalStyle('*, *::before, *::after', {

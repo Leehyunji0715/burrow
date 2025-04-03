@@ -27,4 +27,6 @@ export const navContainer = style({
     fontSize: vars.fontSize.medium2
 });
 
-export const navItem = style({})
+export const navItem = style({
+    listStyle: 'none'
+})
