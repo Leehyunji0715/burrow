@@ -12,9 +12,10 @@
     "prepare": "husky"
   },
   "lint-staged": {
-     "app/**/*.{ts,tsx}": "prettier --write --ignore-unknown"
+    "app/**/*.{ts,tsx}": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@radix-ui/themes": "^3.2.1",
     "@remix-run/node": "^2.16.3",
     "@remix-run/react": "^2.16.3",
     "@remix-run/serve": "^2.16.3",

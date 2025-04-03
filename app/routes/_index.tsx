@@ -7,9 +7,10 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className=''>
+    <>
       <Navigation type='homeNavigation'/>
       <Header />
-    </div>
+      <div style={{height: '50rem'}}></div>
+    </>
   );
 }

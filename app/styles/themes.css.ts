@@ -1,4 +1,5 @@
 import { createTheme, createThemeContract } from '@vanilla-extract/css';
+import { red } from "@radix-ui/colors";
 
 export const themeContract = createThemeContract({
   colors: {
@@ -7,8 +8,13 @@ export const themeContract = createThemeContract({
     highlight: 'highlight',
     highlightText: 'highlightText',
     danger: 'danger',
-    text: 'black',
+    text: 'text',
+    textContrast: 'textContrast'
   },
+  background: {
+    home: '',
+    inputText: '',
+  }
 });
 
 export const lightTheme = createTheme(themeContract, {
@@ -17,10 +23,14 @@ export const lightTheme = createTheme(themeContract, {
     secondary: '#7ecbff',
     highlight: '#ffac00',
     highlightText: 'white',
-    danger: '#e74c3c',
-    text: 'white',
-    // text: 'black',
+    danger: red.red11,
+    text: '#252525',
+    textContrast: 'white',
   },
+  background: {
+    home: `linear-gradient(to left, ${themeContract.colors.primary}, ${themeContract.colors.secondary})`,
+    inputText: 'white',
+  }
 });
 
 // TODO: Add Dark Theme
@@ -32,5 +42,10 @@ export const darkTheme = createTheme(themeContract, {
     highlightText: '',
     danger: '',
     text: '',
+    textContrast: ''
   },
+  background: {
+    home: '',
+    inputText: '',
+  }
 });

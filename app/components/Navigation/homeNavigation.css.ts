@@ -1,7 +1,9 @@
 import { style } from "@vanilla-extract/css";
-import { vars } from "~/styles/gloabalTheme.css";
+import { mainFont } from '~/styles/font.css';
+import { vars } from "~/styles/variables.css";
+import { themeContract } from "~/styles/themes.css";
 
-export const container = style({
+export const container = style([mainFont, {
     position: 'fixed',
     top: 0,
     left: 0,
@@ -10,8 +12,10 @@ export const container = style({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: "1rem 2rem"
-});
+    padding: "1rem 2rem",
+    color: themeContract.colors.textContrast,
+    background: themeContract.background.home
+}]);
 
 export const logo = style({
     height: '5rem'

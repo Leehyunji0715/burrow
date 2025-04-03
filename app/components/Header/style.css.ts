@@ -1,16 +1,17 @@
 import { style } from '@vanilla-extract/css';
+import { mainFont } from '~/styles/font.css';
 import { themeContract } from '~/styles/themes.css';
 
-export const base = style({
+export const base = style([mainFont, {
   position: 'relative',
   overflow: 'hidden',
-});
+  color: themeContract.colors.textContrast
+}]);
 
 export const header = style({
   position: 'relative',
   height: '97vh',
-  color: themeContract.colors.text,
-  background: `linear-gradient(to left, ${themeContract.colors.primary}, ${themeContract.colors.secondary})`
+  background: themeContract.background.home
 });
 
 export const mainContainer = style({

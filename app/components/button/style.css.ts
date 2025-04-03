@@ -15,3 +15,7 @@ export const root = style({
     transform: 'translateY(1px)',
   },
 });
+
+export const highlight = style({
+  background: themeContract.colors.highlight,
+})

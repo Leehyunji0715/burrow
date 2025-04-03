@@ -1,17 +1,8 @@
-import { globalFontFace, globalStyle } from '@vanilla-extract/css';
+import { globalStyle } from '@vanilla-extract/css';
 
 import { themeContract } from './themes.css';
 
-const mainFont = 'HakgyoansimDunggeunmisoTTF-B';
-
-globalFontFace(mainFont, {
-  src: 'url("https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2") format("woff2")',
-  fontWeight: 300,
-  fontStyle: 'normal',
-});
-
 globalStyle('html', {
-  fontFamily: mainFont,
   fontSize: '62.5%',
   color: themeContract.colors.text,
 });
@@ -22,6 +13,9 @@ globalStyle('body, *', {
   overflowX: 'hidden',
 });
 
+globalStyle('*, *::before, *::after', {
+  boxSizing: 'border-box'
+})
 
 globalStyle('a, a:link, a:visited', {
   color: 'currentColor',
