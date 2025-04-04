@@ -3,17 +3,18 @@ import { red } from "@radix-ui/colors";
 
 export const themeContract = createThemeContract({
   colors: {
-    primary: 'primary',
-    secondary: 'secondary',
-    highlight: 'highlight',
-    highlightText: 'highlightText',
-    danger: 'danger',
-    text: 'text',
-    textContrast: 'textContrast'
+    primary: '',
+    secondary: '',
+    highlight: '',
+    highlightText: '',
+    danger: '',
+    text: '',
+    textInBackground: ''
   },
   background: {
     home: '',
-    inputText: '',
+    app: '',
+    appContent: ''
   }
 });
 
@@ -25,11 +26,12 @@ export const lightTheme = createTheme(themeContract, {
     highlightText: 'white',
     danger: red.red11,
     text: '#252525',
-    textContrast: 'white',
+    textInBackground: 'white',
   },
   background: {
     home: `linear-gradient(to left, ${themeContract.colors.primary}, ${themeContract.colors.secondary})`,
-    inputText: 'white',
+    app: `#a584ff99`,
+    appContent: 'white'
   }
 });
 
@@ -42,10 +44,11 @@ export const darkTheme = createTheme(themeContract, {
     highlightText: '',
     danger: '',
     text: '',
-    textContrast: ''
+    textInBackground: ''
   },
   background: {
     home: '',
-    inputText: '',
+    app: '',
+    appContent: ''
   }
 });

@@ -8,7 +8,7 @@ export const page = style([mainFont, {
     background: themeContract.background.home,
     overflow: 'hidden',
     position: 'relative',
-    color: themeContract.colors.textContrast
+    color: themeContract.colors.textInBackground
 }])
 
 export const container = style({

@@ -1,11 +1,12 @@
 import { style } from '@vanilla-extract/css';
 import { mainFont } from '~/styles/font.css';
 import { themeContract } from '~/styles/themes.css';
+import { vars } from '~/styles/variables.css';
 
 export const base = style([mainFont, {
   position: 'relative',
   overflow: 'hidden',
-  color: themeContract.colors.textContrast
+  color: themeContract.colors.textInBackground
 }]);
 
 export const header = style({
@@ -39,8 +40,14 @@ export const mainMessage = style({
 });
 
 export const subMessage = style({
-  fontSize: '5rem',
+  fontSize: '4rem',
   letterSpacing: 2,
+});
+
+export const headButton = style({
+  fontSize: vars.fontSize.medium2,
+  marginTop: '3rem',
+  padding: '2rem 2.5rem'
 });
 
 export const wave = style({

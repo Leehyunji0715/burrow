@@ -1,5 +1,5 @@
 import type { MetaFunction } from '@remix-run/node';
-import { Button, Header, Navigation } from '~/components';
+import { Header, HomeNavigation } from '~/components';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'New Remix App222222' }, { name: 'description', content: 'Welcome to Remix!' }];
@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <>
-      <Navigation type='homeNavigation'/>
+      <HomeNavigation/>
       <Header />
       <div style={{height: '50rem'}}></div>
     </>

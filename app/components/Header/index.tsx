@@ -10,9 +10,13 @@ export const Header = () => {
         <div className={styles.mainContainer}>
           <div className={styles.messageContainer}>
             <h1 className={styles.mainMessage}>Welcome</h1>
-            <span className={styles.subMessage}>for our future</span>
+            <span className={styles.subMessage}>for team success</span>
           </div>
-          <Button style={{ marginTop: "3rem" }}>START</Button>
+          <a href='/app'>
+            <Button className={styles.headButton}>
+              START
+            </Button>
+          </a>
         </div>
       </header>
       <img src={wave} className={styles.wave} alt='wave' />
