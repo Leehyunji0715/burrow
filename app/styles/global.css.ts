@@ -8,17 +8,17 @@ globalStyle('html', {
 });
 
 globalStyle('body', {
-  overflowX: 'hidden'
+  overflowX: 'hidden',
 });
 
 globalStyle('body, *', {
   margin: 0,
-  padding: 0
+  padding: 0,
 });
 
 globalStyle('*, *::before, *::after', {
-  boxSizing: 'border-box'
-})
+  boxSizing: 'border-box',
+});
 
 globalStyle('a, a:link, a:visited', {
   color: 'currentColor',

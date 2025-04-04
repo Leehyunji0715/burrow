@@ -1,5 +1,5 @@
+import { red } from '@radix-ui/colors';
 import { createTheme, createThemeContract } from '@vanilla-extract/css';
-import { red } from "@radix-ui/colors";
 
 export const themeContract = createThemeContract({
   colors: {
@@ -18,12 +18,12 @@ export const themeContract = createThemeContract({
   app: {
     text: '',
     background: ``,
-    backgroundHover: ''
+    backgroundHover: '',
   },
   appContent: {
     text: '',
-    background: ''
-  }
+    background: '',
+  },
 });
 
 export const lightTheme = createTheme(themeContract, {
@@ -43,12 +43,12 @@ export const lightTheme = createTheme(themeContract, {
   app: {
     text: '#252525',
     background: '#f0f0f0',
-    backgroundHover: '#fafafa'
+    backgroundHover: '#fafafa',
   },
   appContent: {
     text: '#252525',
-    background: 'white'
-  }
+    background: 'white',
+  },
 });
 
 // TODO: Add Dark Theme
@@ -60,7 +60,7 @@ export const darkTheme = createTheme(themeContract, {
     highlightText: '',
     danger: '',
     text: '',
-    textContrast: ''
+    textContrast: '',
   },
   home: {
     text: '',
@@ -69,10 +69,10 @@ export const darkTheme = createTheme(themeContract, {
   app: {
     text: '',
     background: '',
-    backgroundHover: ''
+    backgroundHover: '',
   },
   appContent: {
     text: '',
-    background: ''
-  }
+    background: '',
+  },
 });

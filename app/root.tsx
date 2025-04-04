@@ -1,10 +1,10 @@
+import { Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
 import type { LinksFunction } from '@remix-run/node';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
-import { Theme } from "@radix-ui/themes";
 
-import "@radix-ui/themes/styles.css";
-import '~/styles/global.css';
 import '~/styles/font.css';
+import '~/styles/global.css';
 import { lightTheme } from '~/styles/themes.css';
 
 export const links: LinksFunction = () => [

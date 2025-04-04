@@ -1,9 +1,9 @@
-import { style } from "@vanilla-extract/css";
+import { style } from '@vanilla-extract/css';
 
 const w100 = style({
-    width: '100%'
-})
+  width: '100%',
+});
 
 export default {
-    w100
+  w100,
 };

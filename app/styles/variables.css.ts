@@ -10,6 +10,6 @@ export const vars = createGlobalTheme(':root', {
     small: '.75rem',
     medium: '1.5rem',
     medium2: '2rem',
-    large: '3rem'
-  }
+    large: '3rem',
+  },
 });

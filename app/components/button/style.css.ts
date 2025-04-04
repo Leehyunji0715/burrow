@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+
 import { themeContract } from '~/styles/themes.css';
 
 export const root = style({
@@ -18,4 +19,4 @@ export const root = style({
 
 export const highlight = style({
   background: themeContract.colors.highlight,
-})
+});

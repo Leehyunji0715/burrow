@@ -1,18 +1,22 @@
 import { style } from '@vanilla-extract/css';
+
 import { mainFont } from '~/styles/font.css';
 import { themeContract } from '~/styles/themes.css';
 import { vars } from '~/styles/variables.css';
 
-export const base = style([mainFont, {
-  position: 'relative',
-  overflow: 'hidden',
-  color: themeContract.home.text
-}]);
+export const base = style([
+  mainFont,
+  {
+    position: 'relative',
+    overflow: 'hidden',
+    color: themeContract.home.text,
+  },
+]);
 
 export const header = style({
   position: 'relative',
   height: '97vh',
-  background: themeContract.home.background
+  background: themeContract.home.background,
 });
 
 export const mainContainer = style({
@@ -23,7 +27,7 @@ export const mainContainer = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  overflow: 'hidden'
+  overflow: 'hidden',
 });
 
 export const messageContainer = style({
@@ -31,7 +35,7 @@ export const messageContainer = style({
   flexDirection: 'column',
   alignItems: 'center',
   textTransform: 'uppercase',
-  gap: ".75rem"
+  gap: '.75rem',
 });
 
 export const mainMessage = style({
@@ -47,7 +51,7 @@ export const subMessage = style({
 export const headButton = style({
   fontSize: vars.fontSize.medium2,
   marginTop: '3rem',
-  padding: '2rem 2.5rem'
+  padding: '2rem 2.5rem',
 });
 
 export const wave = style({

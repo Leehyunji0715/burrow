@@ -1,6 +1,5 @@
 import { globalFontFace, style } from '@vanilla-extract/css';
 
-
 const mainFontName = 'HakgyoansimDunggeunmisoTTF-B';
 
 globalFontFace(mainFontName, {
@@ -9,7 +8,6 @@ globalFontFace(mainFontName, {
   fontStyle: 'normal',
 });
 
-
 export const mainFont = style({
-    fontFamily: mainFontName
+  fontFamily: mainFontName,
 });
