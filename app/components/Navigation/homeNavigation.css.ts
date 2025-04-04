@@ -13,8 +13,8 @@ export const navContainer = style([mainFont, {
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: "1rem 2rem",
-    color: themeContract.colors.textInBackground,
-    background: themeContract.background.home
+    color: themeContract.home.text,
+    background: themeContract.home.background
 }]);
 
 export const logo = style({

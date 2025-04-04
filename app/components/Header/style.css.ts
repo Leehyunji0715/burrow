@@ -6,13 +6,13 @@ import { vars } from '~/styles/variables.css';
 export const base = style([mainFont, {
   position: 'relative',
   overflow: 'hidden',
-  color: themeContract.colors.textInBackground
+  color: themeContract.home.text
 }]);
 
 export const header = style({
   position: 'relative',
   height: '97vh',
-  background: themeContract.background.home
+  background: themeContract.home.background
 });
 
 export const mainContainer = style({

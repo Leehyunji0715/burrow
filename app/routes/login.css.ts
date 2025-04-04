@@ -5,10 +5,10 @@ import { themeContract } from "~/styles/themes.css";
 export const page = style([mainFont, {
     width: '100vw',
     height: '100vh',
-    background: themeContract.background.home,
+    background: themeContract.home.background,
     overflow: 'hidden',
     position: 'relative',
-    color: themeContract.colors.textInBackground
+    color: themeContract.home.text
 }])
 
 export const container = style({

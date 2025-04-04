@@ -9,12 +9,20 @@ export const themeContract = createThemeContract({
     highlightText: '',
     danger: '',
     text: '',
-    textInBackground: ''
+    textContrast: '',
   },
-  background: {
-    home: '',
-    app: '',
-    appContent: ''
+  home: {
+    text: '',
+    background: '',
+  },
+  app: {
+    text: '',
+    background: ``,
+    backgroundHover: ''
+  },
+  appContent: {
+    text: '',
+    background: ''
   }
 });
 
@@ -26,12 +34,20 @@ export const lightTheme = createTheme(themeContract, {
     highlightText: 'white',
     danger: red.red11,
     text: '#252525',
-    textInBackground: 'white',
+    textContrast: 'white',
   },
-  background: {
-    home: `linear-gradient(to left, ${themeContract.colors.primary}, ${themeContract.colors.secondary})`,
-    app: `#a584ff99`,
-    appContent: 'white'
+  home: {
+    text: 'white',
+    background: `linear-gradient(to left, ${themeContract.colors.primary}, ${themeContract.colors.secondary})`,
+  },
+  app: {
+    text: '#252525',
+    background: '#f0f0f0',
+    backgroundHover: '#fafafa'
+  },
+  appContent: {
+    text: '#252525',
+    background: 'white'
   }
 });
 
@@ -44,11 +60,19 @@ export const darkTheme = createTheme(themeContract, {
     highlightText: '',
     danger: '',
     text: '',
-    textInBackground: ''
+    textContrast: ''
   },
-  background: {
-    home: '',
-    app: '',
-    appContent: ''
+  home: {
+    text: '',
+    background: '',
+  },
+  app: {
+    text: '',
+    background: '',
+    backgroundHover: ''
+  },
+  appContent: {
+    text: '',
+    background: ''
   }
 });
