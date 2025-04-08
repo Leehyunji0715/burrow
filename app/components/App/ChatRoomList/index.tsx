@@ -4,10 +4,10 @@ import { Separator } from '~/components/common/Separator';
 
 import { routes } from '~/constant/routes';
 
-import { UserPanel } from './UserPanel';
+import { ChatPanel } from './ChatPanel';
 import * as styles from './style.css';
 
-export const UserList = () => {
+export const ChatRoomList = () => {
   return (
     <div className={styles.container}>
       <div className={styles.heading}>새 채팅 만들기, 채팅방 필터, 채팅 추가</div>
@@ -15,13 +15,13 @@ export const UserList = () => {
       <ul className={styles.listContainer}>
         <li className={styles.listItem}>
           <Link to={routes.app.myChat}>
-            <UserPanel src='' username='나' />
+            <ChatPanel src='' username='나' />
           </Link>
         </li>
         {userData.map((user) => (
           <li key={user.uid} className={styles.listItem}>
             <Link to={user.uid}>
-              <UserPanel src={user.profilePicture} username={user.name} />
+              <ChatPanel src={user.profilePicture} username={user.name} />
             </Link>
           </li>
         ))}

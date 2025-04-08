@@ -3,7 +3,7 @@ import { json } from '@remix-run/node';
 import { Outlet, useLoaderData } from '@remix-run/react';
 import { useLocation } from '@remix-run/react';
 
-import { UserList } from '~/components/app';
+import { ChatRoomList } from '~/components/app';
 
 import { isChat, routes } from '~/constant/routes';
 
@@ -19,7 +19,7 @@ export default function AppContent() {
   if (isChat(location.pathname)) {
     return (
       <>
-        <UserList />
+        <ChatRoomList />
         <div className={styles.container} style={{ fontSize: '2rem' }}>
           <Outlet />
         </div>

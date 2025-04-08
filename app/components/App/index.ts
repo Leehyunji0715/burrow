@@ -1,3 +1,3 @@
-export { UserList } from './UserList';
-export { ChatList } from './ChatList';
+export { ChatRoomList } from './ChatRoomList';
+export { ChatMain } from './ChatMain';
 export { AppNavigation } from './Navigation';
