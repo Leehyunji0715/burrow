@@ -1,5 +1,6 @@
 import { Outlet } from '@remix-run/react';
-import { AppNavigation } from '~/components';
+
+import { AppNavigation } from '~/components/app';
 
 import * as styles from './app.css';
 

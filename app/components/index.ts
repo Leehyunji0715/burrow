@@ -1,6 +1,3 @@
-export { Button } from './Button';
-export { Header } from './Header';
-export { HomeNavigation, AppNavigation } from './Navigation';
-export { InputText } from './InputText';
-export { LoginForm, SignUpForm } from './Form';
-export { Separator } from './Separator';
+export { Button } from './common/Button';
+export { InputText } from './common/InputText';
+export { Separator } from './common/Separator';

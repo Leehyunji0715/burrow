@@ -3,7 +3,7 @@ import { json } from '@remix-run/node';
 import { Outlet, useLoaderData } from '@remix-run/react';
 import { useLocation } from '@remix-run/react';
 
-import { UserList } from '~/components/App';
+import { UserList } from '~/components/app';
 
 import { isChat, routes } from '~/constant/routes';
 

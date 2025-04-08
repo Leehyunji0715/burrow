@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react';
 
-import { SignUpForm } from '~/components/';
+import { SignUpForm } from '~/components/home';
 
 import * as styles from './login.css';
 

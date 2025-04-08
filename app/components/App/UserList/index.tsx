@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react';
 
-import { Separator } from '~/components/Separator';
+import { Separator } from '~/components/common/Separator';
 
 import { routes } from '~/constant/routes';
 

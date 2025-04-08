@@ -1,6 +1,6 @@
 import wave from '~/assets/wave.svg';
 
-import { Button } from '../Button';
+import { Button } from '../../common/Button';
 import * as styles from './style.css';
 
 export const Header = () => {
