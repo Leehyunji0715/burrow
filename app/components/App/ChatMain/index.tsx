@@ -10,8 +10,10 @@ type MessageType = {
 
 const ChatMessage = ({ message }: { message: MessageType }) => {
   return (
-    <li className={message.isCurrentUser ? styles.curUserChatMessage : styles.chatMessage}>
-      {message.message}
+    <li className={message.isCurrentUser ? styles.curUserchatMessageItem : styles.chatMessageItem}>
+      <span className={message.isCurrentUser ? styles.curUserChatMessage : styles.chatMessage}>
+        {message.message}
+      </span>
     </li>
   );
 };
@@ -33,7 +35,7 @@ export const ChatMain = () => {
     <div className={styles.container}>
       {orderedDates.map((date) => {
         return (
-          <ul key={date}>
+          <ul key={date} className={styles.chatSection}>
             {messageByDate[date].map((msg) => (
               <ChatMessage key={msg.id} message={msg} />
             ))}
@@ -109,5 +111,12 @@ const messages: MessageType[] = [
     isCurrentUser: true,
     message: 'Long time ago...',
     timestamp: '2025-04-01T14:09',
+  },
+  {
+    id: '11',
+    sender: 'Jane Smith',
+    isCurrentUser: true,
+    message: 'Long time ago...22',
+    timestamp: '2025-04-01T14:12',
   },
 ];

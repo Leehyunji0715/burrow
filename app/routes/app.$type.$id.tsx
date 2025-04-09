@@ -6,6 +6,8 @@ import { ChatMain } from '~/components/app';
 
 import { isChat } from '~/constant/routes';
 
+import * as styles from './app.$type.css';
+
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   return json({ id: params.id, type: params.type });
 };
@@ -15,12 +17,7 @@ export default function AppContent() {
   const { id = '', type = '' } = useLoaderData<typeof loader>();
 
   if (isChat(location.pathname)) {
-    return (
-      <div>
-        Chat: {id}
-        <ChatMain />
-      </div>
-    );
+    return <ChatMain />;
   }
 
   return <div>{id}</div>;
