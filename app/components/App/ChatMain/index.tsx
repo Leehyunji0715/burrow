@@ -33,15 +33,18 @@ export const ChatMain = () => {
   const orderedDates = Object.keys(messageByDate).sort();
   return (
     <div className={styles.container}>
-      {orderedDates.map((date) => {
-        return (
-          <ul key={date} className={styles.chatSection}>
-            {messageByDate[date].map((msg) => (
-              <ChatMessage key={msg.id} message={msg} />
-            ))}
-          </ul>
-        );
-      })}
+      <div className={styles.chatContainer}>
+        {orderedDates.map((date) => {
+          return (
+            <ul key={date} className={styles.chatSection}>
+              {messageByDate[date].map((msg) => (
+                <ChatMessage key={msg.id} message={msg} />
+              ))}
+            </ul>
+          );
+        })}
+      </div>
+      <div style={{ width: '100%', height: '10rem', background: 'yellow' }}>Dummy</div>
     </div>
   );
 };
