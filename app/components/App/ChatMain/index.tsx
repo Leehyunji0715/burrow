@@ -1,6 +1,52 @@
 import * as styles from './styles.css';
 
-const messages = [
+type MessageType = {
+  id: string;
+  sender: string;
+  message: string;
+  timestamp: string;
+  isCurrentUser?: boolean;
+};
+
+const ChatMessage = ({ message }: { message: MessageType }) => {
+  return (
+    <li className={message.isCurrentUser ? styles.curUserChatMessage : styles.chatMessage}>
+      {message.message}
+    </li>
+  );
+};
+
+export const ChatMain = () => {
+  const messageByDate = messages.reduce(
+    (acc, cur) => {
+      const date = new Date(cur.timestamp).toISOString().split('T')[0];
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push(cur);
+      return acc;
+    },
+    {} as Record<string, MessageType[]>
+  );
+  const orderedDates = Object.keys(messageByDate).sort();
+  return (
+    <div className={styles.container}>
+      {orderedDates.map((date) => {
+        return (
+          <ul key={date}>
+            {messageByDate[date].map((msg) => (
+              <ChatMessage key={msg.id} message={msg} />
+            ))}
+          </ul>
+        );
+      })}
+    </div>
+  );
+};
+
+const users = [{ id: '1', name: 'John Doe', email: 'johnDoe@gmail.com' }, {}];
+
+const messages: MessageType[] = [
   { id: '0', sender: 'John Doe', message: 'SIUUUUU', timestamp: '2025-04-02T14:00:00Z' },
   { id: '1', sender: 'John Doe', message: 'Hey! How are you?', timestamp: '2025-04-04T14:00:00Z' },
   {
@@ -57,21 +103,11 @@ const messages = [
     message: 'That sounds nice too. Sometimes you just need a lazy weekend!',
     timestamp: '2025-04-04T14:09',
   },
+  {
+    id: '11',
+    sender: 'Jane Smith',
+    isCurrentUser: true,
+    message: 'Long time ago...',
+    timestamp: '2025-04-01T14:09',
+  },
 ];
-
-export const ChatMain = () => {
-  const messageByDate = messages.reduce(
-    (acc, cur) => {
-      const date = new Date(cur.timestamp).toISOString().split('T')[0];
-      if (!acc[date]) {
-        acc[date] = [];
-      }
-      acc[date].push(cur);
-      return acc;
-    },
-    {} as Record<string, Object[]>
-  );
-  return <ul className={styles.container}>ChatMain</ul>;
-};
-
-const users = [{ id: '1', name: 'John Doe', email: 'johnDoe@gmail.com' }, {}];

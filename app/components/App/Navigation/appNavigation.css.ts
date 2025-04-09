@@ -11,7 +11,7 @@ export const navContainer = style({
   justifyContent: 'start',
   alignItems: 'center',
   padding: '1rem 2rem',
-  color: themeContract.colors.textContrast,
+  color: themeContract.colors.highlightText,
   background: themeContract.colors.primary,
   gap: '1rem',
   fontSize: '3rem',

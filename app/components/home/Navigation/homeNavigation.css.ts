@@ -16,7 +16,7 @@ export const navContainer = style([
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '1rem 2rem',
-    color: themeContract.home.text,
+    color: themeContract.colors.textContrast,
     background: themeContract.home.background,
   },
 ]);

@@ -8,6 +8,7 @@ export const heading = style({
 });
 
 export const loginForm = style({
+  color: themeContract.colors.textContrast,
   padding: '7rem 3rem 5rem 3rem',
   display: 'flex',
   flexDirection: 'column',

@@ -9,7 +9,7 @@ export const base = style([
   {
     position: 'relative',
     overflow: 'hidden',
-    color: themeContract.home.text,
+    color: themeContract.colors.textContrast,
   },
 ]);
 

@@ -8,20 +8,18 @@ export const themeContract = createThemeContract({
     highlight: '',
     highlightText: '',
     danger: '',
+    primarySub: '',
     text: '',
     textContrast: '',
   },
   home: {
-    text: '',
     background: '',
   },
   app: {
-    text: '',
     background: ``,
     backgroundHover: '',
   },
   appContent: {
-    text: '',
     background: '',
   },
 });
@@ -33,20 +31,18 @@ export const lightTheme = createTheme(themeContract, {
     highlight: '#ffac00',
     highlightText: 'white',
     danger: red.red11,
+    primarySub: hexToRgba('#a584ff', 0.2),
     text: '#252525',
     textContrast: 'white',
   },
   home: {
-    text: 'white',
     background: `linear-gradient(to left, ${themeContract.colors.primary}, ${themeContract.colors.secondary})`,
   },
   app: {
-    text: '#252525',
     background: '#f0f0f0',
     backgroundHover: '#fafafa',
   },
   appContent: {
-    text: '#252525',
     background: 'white',
   },
 });
@@ -59,20 +55,27 @@ export const darkTheme = createTheme(themeContract, {
     highlight: '',
     highlightText: '',
     danger: '',
+    primarySub: '',
     text: '',
     textContrast: '',
   },
   home: {
-    text: '',
     background: '',
   },
   app: {
-    text: '',
     background: '',
     backgroundHover: '',
   },
   appContent: {
-    text: '',
     background: '',
   },
 });
+
+function hexToRgba(hex: string, opacity = 1) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (!result) return '';
+  const r = parseInt(result[1], 16);
+  const g = parseInt(result[2], 16);
+  const b = parseInt(result[3], 16);
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
