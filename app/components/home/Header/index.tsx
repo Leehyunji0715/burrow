@@ -13,7 +13,7 @@ export const Header = () => {
             <span className={styles.subMessage}>for team success</span>
           </div>
           <a href='/app'>
-            <Button className={styles.headButton}>START</Button>
+            <Button bgType='highlight' className={styles.headButton}>START</Button>
           </a>
         </div>
       </header>

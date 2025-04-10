@@ -48,7 +48,7 @@ export const SignUpForm = () => {
         </Form.Control>
       </Form.Field>
       <Form.Submit asChild>
-        <Button className={utils.w100}>Sign up</Button>
+        <Button bgType='highlight' className={utils.w100}>Sign up</Button>
       </Form.Submit>
       <Flex gap='3'>
         <Text>Already have an account?</Text>

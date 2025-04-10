@@ -5,7 +5,7 @@ import { ForwardedRef, forwardRef } from 'react';
 import * as styles from './style.css';
 
 type Props = ButtonProps & {
-  bgType: 'primary' | 'highlight';
+  bgType?: 'primary' | 'highlight';
 };
 
 export const Button = forwardRef(
