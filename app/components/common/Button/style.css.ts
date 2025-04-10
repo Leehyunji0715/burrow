@@ -20,3 +20,7 @@ export const root = style({
 export const highlight = style({
   background: themeContract.colors.highlight,
 });
+
+export const primary = style({
+  background: themeContract.colors.primary,
+});
