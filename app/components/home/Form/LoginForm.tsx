@@ -3,7 +3,7 @@ import { Link } from '@remix-run/react';
 import { Form } from 'radix-ui';
 import { Button, InputText } from '~/components';
 
-import utils from '~/styles/utils.css';
+import common from '~/styles/common.css';
 
 import * as styles from './form.css';
 
@@ -40,7 +40,7 @@ export const LoginForm = () => {
         Forgot password?
       </Link>
       <Form.Submit asChild>
-        <Button bgType='highlight' className={utils.w100}>Log In</Button>
+        <Button bgType='highlight' className={common.w100}>Log In</Button>
       </Form.Submit>
       <Flex gap='3'>
         <Text>Not a Member?</Text>

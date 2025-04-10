@@ -39,7 +39,7 @@ export default function AppContent() {
 
 const renderContent = (pathname: string, id: string) => {
   if (isChat(pathname)) {
-    return <ChatMain />;
+    return <ChatMain chatId={id} />;
   }
   return <div>{id}</div>;
 };
