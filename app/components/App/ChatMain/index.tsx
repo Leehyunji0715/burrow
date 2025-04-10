@@ -4,7 +4,7 @@ import {Avatar, TextField, IconButton} from '@radix-ui/themes';
 import { PiPaperclip, PiPaperPlaneRight } from "react-icons/pi";
 import * as styles from './styles.css';
 import { formId } from '~/constant/forms';
-import { convertToFormattedDate } from '~/utils/datetime';
+import { convertToFormattedDate, getDateName } from '~/utils/datetime';
 
 type Props = {
   chatId: string;
@@ -34,24 +34,6 @@ export const ChatMain = ({ chatId }: Props) => {
     )
   );
   const orderedDates = Object.keys(messageByDate.current).sort();
-  const today = new Date(); // 오늘 날짜
-  const yesterday = new Date(today); // 어제 날짜
-  yesterday.setDate(today.getDate() - 1);
-  const dayBeforeYesterday = new Date(today); // 그제 날짜
-  dayBeforeYesterday.setDate(today.getDate() - 2);
-
-  const dateMessage = (date: string) => {
-    switch(date) {
-      case today.toISOString().split('T')[0]:
-        return "오늘";
-      case yesterday.toISOString().split('T')[0]:
-        return "어제";
-      case dayBeforeYesterday.toISOString().split('T')[0]:
-        return "그저께";
-      default:
-        return date;
-    }
-  };
 
   return (
     <div className={styles.container}>
@@ -62,7 +44,7 @@ export const ChatMain = ({ chatId }: Props) => {
         {orderedDates.map((date) => {
           return (
             <>
-              <div className={styles.chatDate}>{dateMessage(date)}</div>
+              <div className={styles.chatDate}>{getDateName(date)}</div>
               <ul key={date} className={styles.chatSection}>
                 {messageByDate.current[date].map((msg) => (
                   <ChatMessage key={msg.id} message={msg} />
