@@ -36,7 +36,8 @@ export const chatMessageItem = style({
   listStyle: 'none',
   display: 'flex',
   gap: '1rem',
-  alignItems: 'center'
+  alignItems: 'center',
+  position: 'relative'
 });
 
 export const curUserchatMessageItem = style([
@@ -45,6 +46,17 @@ export const curUserchatMessageItem = style([
     justifyContent: 'end',
   },
 ]);
+
+export const messageMetaInfo = style({
+  position: 'absolute',
+  top: '-1.8rem',
+  left: '5rem',
+  fontSize: '85%',
+  opacity: '.75',
+  display: 'flex',
+  gap: '1.5rem'
+})
+
 
 export const chatMessage = style({
   display: 'inline-block',

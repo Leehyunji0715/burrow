@@ -4,6 +4,11 @@ import {Avatar, TextField, IconButton} from '@radix-ui/themes';
 import { PiPaperclip, PiPaperPlaneRight } from "react-icons/pi";
 import * as styles from './styles.css';
 import { formId } from '~/constant/forms';
+import { convertToFormattedDate } from '~/utils/datetime';
+
+type Props = {
+  chatId: string;
+};
 
 type MessageType = {
   id: string;
@@ -14,7 +19,7 @@ type MessageType = {
   isCurrentUser?: boolean;
 };
 
-export const ChatMain = () => {
+export const ChatMain = ({ chatId }: Props) => {
   const messageByDate = useRef<Record<string, MessageType[]>>(
     messages.reduce(
       (acc, cur) => {
@@ -50,7 +55,9 @@ export const ChatMain = () => {
 
   return (
     <div className={styles.container}>
-      <div style={{ width: '100%', height: '5rem', background: 'yellow' }}>Heading</div>
+      <div style={{ width: '100%', height: '5rem', background: 'yellow' }}>
+        {chatId}
+      </div>
       <div className={styles.chatContainer}>
         {orderedDates.map((date) => {
           return (
@@ -94,6 +101,12 @@ export const ChatMain = () => {
 const ChatMessage = ({ message }: { message: MessageType }) => {
   return (
     <li className={message.isCurrentUser ? styles.curUserchatMessageItem : styles.chatMessageItem}>
+      {!message.isCurrentUser && (
+        <div className={styles.messageMetaInfo}>
+          <span>{message.sender}</span>
+          <span>{convertToFormattedDate(message.timestamp)}</span>
+        </div>
+      )}
       {!message.isCurrentUser && message.senderImage && (
         <Avatar
           src={message.senderImage}
@@ -184,17 +197,18 @@ const messages: MessageType[] = [
     timestamp: '2025-04-01T14:12',
   },
   {
-    id: '12',
+    id: '13',
     sender: 'Jane Smith',
     isCurrentUser: true,
     message: "Today's Message",
     timestamp: '2025-04-10T14:12',
   },
   {
-    id: '12',
+    id: '14',
     sender: 'Jane Smith',
     isCurrentUser: true,
     message: "Yesterday's Message",
     timestamp: '2025-04-09T14:12',
   },
+  { id: '15', sender: 'John Doe', senderImage: 'https://randomuser.me/api/portraits/women/1.jpg', message: 'ㅋㅋ', timestamp: '2025-04-09T14:14' },
 ];
