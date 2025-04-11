@@ -45,11 +45,6 @@ export const accordionTrigger = style([
   },
 ]);
 
-export const accordionTriggerAvater = style({
-  background: themeContract.colors.primary,
-  padding: '.5rem',
-});
-
 export const accorionChevron = style({
   transition: 'transform 300ms cubic-bezier(0.87, 0, 0.13, 1)',
   selectors: {

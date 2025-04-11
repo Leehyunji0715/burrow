@@ -1,12 +1,13 @@
-import { Avatar } from '@radix-ui/themes';
 import { NavLink } from '@remix-run/react';
 import { Accordion } from 'radix-ui';
 import { ForwardedRef, ReactNode, forwardRef } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
+import { Team } from '~/model/team';
 
 import { Separator } from '~/components/';
 
 import { ListContainer } from '../ListContainer';
+import { TeamAvatar } from '../TeamAvatar';
 import * as styles from './style.css';
 
 export const MyTeamList = () => {
@@ -49,11 +50,7 @@ const AccordionTrigger = forwardRef(
     <Accordion.Header className={styles.accordionHeader}>
       <Accordion.Trigger className={styles.accordionTrigger} ref={forwardedRef}>
         <FaChevronRight className={styles.accorionChevron} aria-hidden />
-        <Avatar
-          src='/app/assets/logo.svg'
-          fallback={name}
-          className={styles.accordionTriggerAvater}
-        />
+        <TeamAvatar src='' fallback={name} />
         {children}
       </Accordion.Trigger>
     </Accordion.Header>
@@ -68,7 +65,7 @@ const AccordionContent = forwardRef(
   )
 );
 
-const myTeams = [
+const myTeams: Team[] = [
   { id: '1', name: 'Team1' },
   { id: '2', name: 'Team2' },
 ];

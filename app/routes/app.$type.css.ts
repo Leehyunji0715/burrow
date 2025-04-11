@@ -6,4 +6,5 @@ export const container = style({
   width: '100%',
   height: '100%',
   fontSize: vars.fontSize.medium2,
+  padding: '1rem 2rem',
 });
