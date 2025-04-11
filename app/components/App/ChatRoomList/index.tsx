@@ -3,15 +3,15 @@ import { Link } from '@remix-run/react';
 import { Separator } from '~/components/common/Separator';
 
 import { routes } from '~/constant/routes';
-
 import { ChatPanel } from './ChatPanel';
+import { ListContainer } from '../ListContainer';
 import * as styles from './style.css';
 
 export const ChatRoomList = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.heading}>새 채팅 만들기, 채팅방 필터, 채팅 추가</div>
-      <Separator />
+    <ListContainer>
+      <ListContainer.Header>새 채팅 만들기, 채팅방 필터, 채팅 추가</ListContainer.Header>
+      <Separator/>
       <ul className={styles.listContainer}>
         <li className={styles.listItem}>
           <Link to={routes.app.myChat}>
@@ -26,8 +26,8 @@ export const ChatRoomList = () => {
           </li>
         ))}
       </ul>
-    </div>
-  );
+    </ListContainer>
+  )
 };
 
 const userData = [

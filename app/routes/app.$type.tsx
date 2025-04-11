@@ -3,9 +3,9 @@ import { json } from '@remix-run/node';
 import { Outlet, useLoaderData } from '@remix-run/react';
 import { useLocation } from '@remix-run/react';
 
-import { ChatRoomList } from '~/components/app';
+import { ChatRoomList, MyTeamList } from '~/components/app';
 
-import { isChat, routes } from '~/constant/routes';
+import { isChat, isTeams } from '~/constant/routes';
 
 import * as styles from './app.$type.css';
 
@@ -26,6 +26,18 @@ export default function AppContent() {
       </>
     );
   }
+
+  if (isTeams(location.pathname)) {
+    return (
+      <>
+        <MyTeamList />
+        <div className={styles.container} style={{ fontSize: '2rem' }}>
+          <Outlet />
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <div className={styles.container} style={{ fontSize: '2rem', color: 'orange' }}>

@@ -2,6 +2,6 @@ import { style } from '@vanilla-extract/css';
 
 export const separator = style({
   width: '100%',
-  height: '2px',
+  height: '1px',
   background: 'currentcolor',
 });

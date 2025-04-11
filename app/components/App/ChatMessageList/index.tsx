@@ -1,25 +1,6 @@
-import { useRef } from 'react';
-
 import * as styles from './styles.css';
 
 export const ChatMessageList = () => {
-  const groupedMessages = useRef<Record<string, Object[]>>(messages.reduce((acc, message) => {
-    // 날짜 추출 (YYYY-MM-DD 형식)
-    const date = new Date(message.timestamp).toISOString().split("T")[0];
-  
-    // 해당 날짜가 없으면 빈 배열 생성
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-  
-    // 현재 메시지를 해당 날짜 배열에 추가
-    acc[date].push(message);
-  
-    return acc;
-  }, {} as Record<string, Object[]>));
-  const today = new Date();
-  console.log("groupedMessages", groupedMessages.current);
-
   return <ul className={styles.container}>
     {messages.map(msg => {
       return <li key={msg.id} className={styles.item}>

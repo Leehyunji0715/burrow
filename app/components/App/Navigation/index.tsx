@@ -10,7 +10,6 @@ import { routes } from '~/constant/routes';
 import * as styles from './appNavigation.css';
 
 const listItems = [
-  { icon: <BsBell />, to: routes.app.notification },
   { icon: <BsChatLeftText />, to: routes.app.chat },
   { icon: <BsPeople />, to: routes.app.teams },
 ];
