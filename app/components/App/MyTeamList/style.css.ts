@@ -12,6 +12,14 @@ export const accordionItem = style({
   marginTop: 1,
 });
 
+export const teamNameSpan = style({
+  flexGrow: 1,
+  textAlign: 'start',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+});
+
 export const accordionHeader = style({
   display: 'flex',
 });

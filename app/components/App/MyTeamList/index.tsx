@@ -17,7 +17,11 @@ export const MyTeamList = () => {
       <Accordion.Root type='multiple' className={styles.accordionRoot}>
         {myTeams.map((team) => (
           <Accordion.Item key={team.id} className={styles.accordionItem} value={team.id}>
-            <AccordionTrigger name={team.name}>{team.name}</AccordionTrigger>
+            <AccordionTrigger name={team.name}>
+              <span title={team.name} className={styles.teamNameSpan}>
+                {team.name}
+              </span>
+            </AccordionTrigger>
             <NavLink
               to={`${team.id}/dashboard`}
               className={({ isActive }) => (isActive ? styles.activeNavLinkContent : '')}
