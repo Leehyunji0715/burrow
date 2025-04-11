@@ -40,7 +40,9 @@ export const LoginForm = () => {
         Forgot password?
       </Link>
       <Form.Submit asChild>
-        <Button bgType='highlight' className={common.w100}>Log In</Button>
+        <Button bgType='highlight' style={{ width: '100%' }}>
+          Log In
+        </Button>
       </Form.Submit>
       <Flex gap='3'>
         <Text>Not a Member?</Text>
