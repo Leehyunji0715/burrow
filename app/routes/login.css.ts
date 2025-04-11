@@ -11,7 +11,7 @@ export const page = style([
     background: themeContract.home.background,
     overflow: 'hidden',
     position: 'relative',
-    color: themeContract.home.text,
+    color: themeContract.colors.text,
   },
 ]);
 

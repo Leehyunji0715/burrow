@@ -18,10 +18,16 @@ export const MyTeamList = () => {
         {myTeams.map((team) => (
           <Accordion.Item key={team.id} className={styles.accordionItem} value={team.id}>
             <AccordionTrigger name={team.name}>{team.name}</AccordionTrigger>
-            <NavLink to={`${team.id}/dashboard`}>
+            <NavLink
+              to={`${team.id}/dashboard`}
+              className={({ isActive }) => (isActive ? styles.activeNavLinkContent : '')}
+            >
               <AccordionContent>Dashboard</AccordionContent>
             </NavLink>
-            <NavLink to={`${team.id}/files`}>
+            <NavLink
+              to={`${team.id}/files`}
+              className={({ isActive }) => (isActive ? styles.activeNavLinkContent : '')}
+            >
               <AccordionContent>Files</AccordionContent>
             </NavLink>
           </Accordion.Item>

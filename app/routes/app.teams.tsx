@@ -14,7 +14,7 @@ export default function AppContent() {
   return (
     <>
       <MyTeamList />
-      <div className={styles.container} style={{ fontSize: '2rem' }}>
+      <div className={styles.container}>
         <Outlet />
       </div>
     </>
