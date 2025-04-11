@@ -9,7 +9,7 @@ export const page = style([
     background: themeContract.app.background,
     overflow: 'hidden',
     position: 'relative',
-    color: themeContract.app.text,
+    color: themeContract.colors.text,
     display: 'flex',
   },
 ]);

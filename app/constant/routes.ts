@@ -7,11 +7,3 @@ export const routes = {
     teams: 'teams',
   },
 };
-
-export const isChat = (pathname: string) => {
-  return pathname.includes(`/${routes.app.chat}`);
-};
-
-export const isTeams = (pathname: string) => {
-  return pathname.includes(`/${routes.app.teams}`);
-};
