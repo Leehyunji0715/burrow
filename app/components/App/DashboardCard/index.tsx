@@ -2,8 +2,6 @@ import { Avatar, Box, Container, Flex, Text } from '@radix-ui/themes';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { DashboardItem } from '~/model/dashboard';
 
-import { Separator } from '~/components/common/Separator';
-
 import * as styles from './styles.css';
 
 type Props = {
@@ -29,7 +27,15 @@ export const DashboardCard = ({ data }: Props) => {
           {data.content}
         </Container>
       </Box>
-      <Box>comment!</Box>
+      {data.comments?.length && (
+        <ul className={styles.commentsContainer}>
+          {data.comments.map((comment, i) => (
+            <li key={i} className={styles.commentsListItem}>
+              {comment.content}
+            </li>
+          ))}
+        </ul>
+      )}
     </Flex>
   );
 };

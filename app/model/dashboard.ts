@@ -44,4 +44,28 @@ const dataList: DashboardItem[] = [
     content: '내일은 휴일입니다.',
     datetime: '2025-04-15T13:29:43.374Z',
   },
+  {
+    id: '3',
+    title: 'Title 2',
+    author: 'User2',
+    authorImage: 'https://randomuser.me/api/portraits/men/10.jpg',
+    content: '내일은 휴일입니다.',
+    datetime: '2025-04-15T13:29:43.374Z',
+  },
+  {
+    id: '4',
+    title: 'Title 4',
+    author: 'User2',
+    authorImage: 'https://randomuser.me/api/portraits/men/10.jpg',
+    content: '내일은 휴일입니다.',
+    datetime: '2025-04-15T13:29:43.374Z',
+  },
+  {
+    id: '5',
+    title: 'Title 2',
+    author: 'User2',
+    authorImage: 'https://randomuser.me/api/portraits/men/10.jpg',
+    content: '내일은 휴일입니다.',
+    datetime: '2025-04-15T13:29:43.374Z',
+  },
 ];

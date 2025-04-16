@@ -9,11 +9,15 @@ export const container = style({
 
 export const contentContainer = style({
   padding: CARD_PADDING,
-  borderBottom: `1px solid var(--gray-6)`,
 });
 
 export const commentsContainer = style({
   padding: CARD_PADDING,
+  borderTop: `1px solid var(--gray-6)`,
+});
+
+export const commentsListItem = style({
+  listStyle: 'none',
 });
 
 export const title = style({
