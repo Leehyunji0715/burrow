@@ -12,6 +12,7 @@ export type Comment = {
   name: string;
   content: string;
   imageUrl: string;
+  datetime: string;
 };
 
 export const fetchAllDashboardItems = (): Promise<DashboardItem[]> => {
@@ -32,8 +33,13 @@ const dataList: DashboardItem[] = [
     content: '내일까지 작업 마감 부탁드립니다.',
     datetime: '2025-04-12T13:29:43.374Z',
     comments: [
-      { name: 'User1', content: '넵!', imageUrl: '' },
-      { name: 'User2', content: '넵!2222', imageUrl: '' },
+      {
+        name: 'User1',
+        content: '넵!',
+        imageUrl: 'https://randomuser.me/api/portraits/women/22.jpg',
+        datetime: '2025-04-12T14:45:43.374Z',
+      },
+      { name: 'User2', content: '넵!2222', imageUrl: '', datetime: '2025-04-12T14:29:43.374Z' },
     ],
   },
   {

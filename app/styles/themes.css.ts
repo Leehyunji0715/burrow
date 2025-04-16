@@ -10,6 +10,7 @@ export const themeContract = createThemeContract({
     danger: '',
     primarySub: '',
     text: '',
+    textSub: '',
     textContrast: '',
   },
   home: {
@@ -33,6 +34,7 @@ export const lightTheme = createTheme(themeContract, {
     danger: red.red11,
     primarySub: hexToRgba('#a584ff', 0.2),
     text: '#252525',
+    textSub: 'var(--gray-11)',
     textContrast: 'white',
   },
   home: {
@@ -57,6 +59,7 @@ export const darkTheme = createTheme(themeContract, {
     danger: '',
     primarySub: '',
     text: '',
+    textSub: '',
     textContrast: '',
   },
   home: {

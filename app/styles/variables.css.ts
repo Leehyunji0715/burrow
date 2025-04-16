@@ -7,7 +7,7 @@ export const vars = createGlobalTheme(':root', {
     large: '24px',
   },
   fontSize: {
-    small: '.75rem',
+    small: '1rem',
     medium: '1.5rem',
     medium2: '2rem',
     large: '3rem',

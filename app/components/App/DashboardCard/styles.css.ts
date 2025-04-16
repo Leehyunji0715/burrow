@@ -1,5 +1,8 @@
 import { style } from '@vanilla-extract/css';
 
+import { themeContract } from '~/styles/themes.css';
+import { vars } from '~/styles/variables.css';
+
 const CARD_PADDING = '1rem 2rem';
 
 export const container = style({
@@ -7,17 +10,13 @@ export const container = style({
   borderRadius: 'var(--radius-3)',
 });
 
+export const headerContainer = style({
+  padding: CARD_PADDING,
+});
+
 export const contentContainer = style({
-  padding: CARD_PADDING,
-});
-
-export const commentsContainer = style({
-  padding: CARD_PADDING,
-  borderTop: `1px solid var(--gray-6)`,
-});
-
-export const commentsListItem = style({
-  listStyle: 'none',
+  marginTop: '2rem',
+  fontSize: vars.fontSize.medium,
 });
 
 export const title = style({
@@ -26,4 +25,14 @@ export const title = style({
   textOverflow: 'ellipsis',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
+});
+
+export const commentsContainer = style({
+  fontSize: vars.fontSize.medium,
+});
+
+export const commentsListItem = style({
+  listStyle: 'none',
+  padding: '.5rem 2rem',
+  borderTop: `1px solid var(--gray-5)`,
 });
