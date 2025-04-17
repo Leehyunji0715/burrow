@@ -3,3 +3,4 @@ export { ChatMain } from './ChatMain';
 export { AppNavigation } from './Navigation';
 export { MyTeamList } from './MyTeamList';
 export { TeamAvatar } from './TeamAvatar';
+export { DashboardCard } from './DashboardCard';
