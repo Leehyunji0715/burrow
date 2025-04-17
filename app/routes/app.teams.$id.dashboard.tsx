@@ -1,7 +1,10 @@
+import { Flex } from '@radix-ui/themes';
 import type { LoaderFunctionArgs } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
+import { FaRegEdit } from 'react-icons/fa';
 import { ClientOnly } from 'remix-utils/client-only';
+import { Button } from '~/components';
 import { fetchAllDashboardItems } from '~/model/dashboard';
 
 import { DashboardCard } from '~/components/app/DashboardCard';
@@ -32,6 +35,12 @@ export default function DashboardContent() {
           </li>
         ))}
       </ul>
+      <Flex align='center' className={styles.footerContainer}>
+        <Button>
+          <FaRegEdit />
+          게시글 작성
+        </Button>
+      </Flex>
     </div>
   );
 }

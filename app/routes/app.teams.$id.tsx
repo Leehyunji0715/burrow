@@ -28,7 +28,7 @@ export default function TeamsContent() {
   }, [id]);
 
   return (
-    <div className={styles.contentContainer}>
+    <div className={styles.container}>
       <Flex align='center' justify='between'>
         <Flex align='center' gap='2' style={{ height: '5rem' }}>
           <TeamAvatar src='' fallback={team.name} />
@@ -44,12 +44,7 @@ export default function TeamsContent() {
 
 const AddButton = ({ pathname }: { pathname: string }) => {
   if (pathname.includes('dashboard')) {
-    return (
-      <Button>
-        <FaRegEdit />
-        게시글 작성
-      </Button>
-    );
+    return null;
   } else if (pathname.includes('files')) {
     return (
       <Button>
