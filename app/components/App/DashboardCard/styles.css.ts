@@ -36,3 +36,7 @@ export const commentsListItem = style({
   padding: '.5rem 2rem',
   borderTop: `1px solid var(--gray-5)`,
 });
+
+export const commentInput = style({
+  margin: CARD_PADDING,
+});

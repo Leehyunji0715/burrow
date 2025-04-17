@@ -1,9 +1,8 @@
 import { Avatar, Box, Container, Flex, Text } from '@radix-ui/themes';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { InputText } from '~/components';
 import { DashboardItem } from '~/model/dashboard';
-import { convertToFormattedDate, getDateName } from '~/utils/datetime';
 
-import { TeamAvatar } from '../TeamAvatar';
 import { UserComment } from './UserComment';
 import * as styles from './styles.css';
 
@@ -39,6 +38,9 @@ export const DashboardCard = ({ data }: Props) => {
           ))}
         </ul>
       )}
+      <form>
+        <InputText className={styles.commentInput} placeholder='회신...' />
+      </form>
     </Flex>
   );
 };
