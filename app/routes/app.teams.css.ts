@@ -1,17 +1,19 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '1rem',
   height: '100%',
   overflow: 'auto',
+});
+
+globalStyle(`${container} > div:first-child`, {
+  paddingBottom: '1rem',
 });
 
 export const contentContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '1rem',
   height: '100%',
   overflow: 'auto',
 });
@@ -31,6 +33,10 @@ export const dashboardListContainer = style([
   },
 ]);
 
+globalStyle(`${dashboardListContainer} li:first-child`, {
+  marginTop: '1rem',
+});
+
 export const dashboardListItem = style({
   listStyle: 'none',
 });
@@ -38,6 +44,8 @@ export const dashboardListItem = style({
 export const footerContainer = style([
   contentPadding,
   {
-    height: '15rem',
+    height: '8rem',
+    flexGrow: 0,
+    flexShrink: 0,
   },
 ]);

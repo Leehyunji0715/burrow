@@ -2,7 +2,7 @@ import { Flex } from '@radix-ui/themes';
 import type { LoaderFunctionArgs } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { ClientOnly } from 'remix-utils/client-only';
 import { Button } from '~/components';
@@ -19,8 +19,13 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 };
 
 export default function DashboardContent() {
-  const { dashboardItems } = useLoaderData<typeof loader>();
+  const { id, dashboardItems } = useLoaderData<typeof loader>();
   const [addNew, setAddNew] = useState(false);
+
+  useEffect(() => {
+    setAddNew(false);
+  }, [id]);
+
   return (
     <div className={styles.contentContainer}>
       <ul className={styles.dashboardListContainer}>
