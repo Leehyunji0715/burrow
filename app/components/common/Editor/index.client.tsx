@@ -17,7 +17,6 @@ export const Editor = forwardRef(
     ref: ForwardedRef<Quill>
   ) => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const defaultValueRef = useRef<Delta | Op[]>(defaultValue);
     const onTextChangeRef = useRef(onTextChange);
     const onSelectionChangeRef = useRef(onSelectionChange);
 
@@ -47,6 +46,7 @@ export const Editor = forwardRef(
         quill = new Quill(editorContainer, {
           theme: 'snow',
           readOnly,
+          placeholder: '메시지를 입력하세요',
         });
 
         if (typeof ref === 'function') {
@@ -55,8 +55,8 @@ export const Editor = forwardRef(
           ref.current = quill; // 객체형 ref 처리
         }
 
-        if (defaultValueRef.current) {
-          quill.setContents(defaultValueRef.current);
+        if (defaultValue) {
+          quill.setContents(defaultValue);
         }
 
         quill.on(
@@ -84,7 +84,7 @@ export const Editor = forwardRef(
           container.innerHTML = '';
         }
       };
-    }, [readOnly, ref]);
+    }, [readOnly, defaultValue, ref]);
 
     return <div ref={containerRef}></div>;
   }

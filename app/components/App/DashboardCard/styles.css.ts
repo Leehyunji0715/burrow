@@ -1,13 +1,12 @@
 import { style } from '@vanilla-extract/css';
 
-import { themeContract } from '~/styles/themes.css';
 import { vars } from '~/styles/variables.css';
 
-const CARD_PADDING = '1rem 2rem';
+import { CARD_BORDER_COLOR, CARD_PADDING, CARD_RADIUS, CARD_SHADOW } from './card.css';
 
 export const container = style({
-  boxShadow: 'var(--shadow-2)',
-  borderRadius: 'var(--radius-3)',
+  boxShadow: CARD_SHADOW,
+  borderRadius: CARD_RADIUS,
 });
 
 export const headerContainer = style({
@@ -34,7 +33,7 @@ export const commentsContainer = style({
 export const commentsListItem = style({
   listStyle: 'none',
   padding: '.5rem 2rem',
-  borderTop: `1px solid var(--gray-5)`,
+  borderTop: `1px solid ${CARD_BORDER_COLOR}`,
 });
 
 export const commentInput = style({
