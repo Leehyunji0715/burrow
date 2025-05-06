@@ -1,10 +1,12 @@
+import { Avatar, IconButton, TextField } from '@radix-ui/themes';
+import { Form } from '@remix-run/react';
 import { useRef } from 'react';
-import { Form } from "@remix-run/react";
-import {Avatar, TextField, IconButton} from '@radix-ui/themes';
-import { PiPaperclip, PiPaperPlaneRight } from "react-icons/pi";
-import * as styles from './styles.css';
-import { formId } from '~/constant/forms';
+import { PiPaperPlaneRight, PiPaperclip } from 'react-icons/pi';
 import { convertToFormattedDate, getDateName } from '~/utils/datetime';
+
+import { formId } from '~/constant/forms';
+
+import * as styles from './styles.css';
 
 type Props = {
   chatId: string;
@@ -16,62 +18,76 @@ type MessageType = {
   senderImage?: string;
   message: string;
   timestamp: string;
+} & ChatInfo;
+
+type ChatInfo = {
   isCurrentUser?: boolean;
+  isFirstMessage?: boolean;
 };
 
 export const ChatMain = ({ chatId }: Props) => {
-  const messageByDate = useRef<Record<string, MessageType[]>>(
+  const messageByDate = useRef<Record<string, Record<string, MessageType[]>>>(
     messages.reduce(
       (acc, cur) => {
-        const date = new Date(cur.timestamp).toISOString().split('T')[0];
+        const dateTime = new Date(cur.timestamp).toISOString();
+        const date = dateTime.split('T')[0];
         if (!acc[date]) {
-          acc[date] = [];
+          acc[date] = {};
         }
-        acc[date].push(cur);
+        if (!acc[date][dateTime]) {
+          acc[date][dateTime] = [];
+        }
+
+        if (!cur.isCurrentUser && acc[date][dateTime].every((msg) => !msg.isFirstMessage)) {
+          cur.isFirstMessage = true;
+        }
+        acc[date][dateTime].push(cur);
         return acc;
       },
-      {} as Record<string, MessageType[]>
+      {} as Record<string, Record<string, MessageType[]>>
     )
   );
   const orderedDates = Object.keys(messageByDate.current).sort();
 
   return (
     <div className={styles.container}>
-      <div style={{ width: '100%', height: '5rem', background: 'yellow' }}>
-        {chatId}
-      </div>
+      <div style={{ width: '100%', height: '5rem', background: 'yellow' }}>{chatId}</div>
       <div className={styles.chatContainer}>
         {orderedDates.map((date) => {
+          const orderedDateTime = Object.keys(messageByDate.current[date]).sort();
           return (
             <>
               <div className={styles.chatDate}>{getDateName(date)}</div>
               <ul key={date} className={styles.chatSection}>
-                {messageByDate.current[date].map((msg) => (
-                  <ChatMessage key={msg.id} message={msg} />
-                ))}
+                {orderedDateTime.map((dateTime) => {
+                  return messageByDate.current[date][dateTime].map((msg) => (
+                    <ChatMessage
+                      key={msg.id}
+                      message={msg}
+                      isFirstMessage={msg.isFirstMessage ?? false}
+                    />
+                  ));
+                })}
               </ul>
             </>
           );
         })}
       </div>
-      <Form
-        id={formId.SEND_CHAT_MESSAGE}
-        className={styles.inputTextContainer}
-        method="post"
-      >
-        <input type="hidden" name="formId" value={formId.SEND_CHAT_MESSAGE} />
-        <TextField.Root name='message' placeholder="메시지를 입력하세요." className={styles.inputText}>
+      <Form id={formId.SEND_CHAT_MESSAGE} className={styles.inputTextContainer} method='post'>
+        <input type='hidden' name='formId' value={formId.SEND_CHAT_MESSAGE} />
+        <TextField.Root
+          name='message'
+          placeholder='메시지를 입력하세요.'
+          className={styles.inputText}
+        >
           <TextField.Slot side='right' className={styles.inputTextSlot}>
             <IconButton type='button' variant='outline' className={styles.inputTextButton}>
-              <PiPaperclip/>
+              <PiPaperclip />
             </IconButton>
           </TextField.Slot>
           <TextField.Slot side='right' className={styles.inputTextSlot}>
-            <IconButton
-              variant='outline' 
-              className={styles.inputTextButton}
-            >
-              <PiPaperPlaneRight/>
+            <IconButton variant='outline' className={styles.inputTextButton}>
+              <PiPaperPlaneRight />
             </IconButton>
           </TextField.Slot>
         </TextField.Root>
@@ -80,21 +96,24 @@ export const ChatMain = ({ chatId }: Props) => {
   );
 };
 
-const ChatMessage = ({ message }: { message: MessageType }) => {
+const ChatMessage = ({
+  message,
+  isFirstMessage,
+}: {
+  message: MessageType;
+  isFirstMessage: boolean;
+}) => {
+  const isOtherUser = !message.isCurrentUser;
   return (
     <li className={message.isCurrentUser ? styles.curUserchatMessageItem : styles.chatMessageItem}>
-      {!message.isCurrentUser && (
+      {isOtherUser && isFirstMessage && (
         <div className={styles.messageMetaInfo}>
           <span>{message.sender}</span>
           <span>{convertToFormattedDate(message.timestamp)}</span>
         </div>
       )}
-      {!message.isCurrentUser && message.senderImage && (
-        <Avatar
-          src={message.senderImage}
-          radius='full'
-          fallback='A'
-        />
+      {isOtherUser && (
+        <Avatar src={message.senderImage} radius='full' fallback='A' hidden={!isFirstMessage} />
       )}
       <span className={message.isCurrentUser ? styles.curUserChatMessage : styles.chatMessage}>
         {message.message}
@@ -106,7 +125,13 @@ const ChatMessage = ({ message }: { message: MessageType }) => {
 const users = [{ id: '1', name: 'John Doe', email: 'johnDoe@gmail.com' }, {}];
 
 const messages: MessageType[] = [
-  { id: '1', sender: 'John Doe', senderImage: 'https://randomuser.me/api/portraits/women/1.jpg' , message: 'Hey! How are you?', timestamp: '2025-04-04T14:00:00Z' },
+  {
+    id: '1',
+    sender: 'John Doe',
+    senderImage: 'https://randomuser.me/api/portraits/women/1.jpg',
+    message: 'Hey! How are you?',
+    timestamp: '2025-04-04T14:00:00Z',
+  },
   {
     id: '2',
     sender: 'Jane Smith',
@@ -142,7 +167,13 @@ const messages: MessageType[] = [
     message: "Tell me about it! Can't wait for the weekend.",
     timestamp: '2025-04-04T14:05:00Z',
   },
-  { id: '7', sender: 'John Doe', senderImage: 'https://randomuser.me/api/portraits/women/1.jpg', message: 'Me too! Any plans?', timestamp: '2025-04-04T14:06:00Z' },
+  {
+    id: '7',
+    sender: 'John Doe',
+    senderImage: 'https://randomuser.me/api/portraits/women/1.jpg',
+    message: 'Me too! Any plans?',
+    timestamp: '2025-04-04T14:06:00Z',
+  },
   {
     id: '8',
     sender: 'Jane Smith',
@@ -192,5 +223,18 @@ const messages: MessageType[] = [
     message: "Yesterday's Message",
     timestamp: '2025-04-09T14:12',
   },
-  { id: '15', sender: 'John Doe', senderImage: 'https://randomuser.me/api/portraits/women/1.jpg', message: 'ㅋㅋ', timestamp: '2025-04-09T14:14' },
+  {
+    id: '15',
+    sender: 'John Doe',
+    senderImage: 'https://randomuser.me/api/portraits/women/1.jpg',
+    message: 'ㅋㅋ',
+    timestamp: '2025-04-09T14:14',
+  },
+  {
+    id: '16',
+    sender: 'John Doe',
+    senderImage: 'https://randomuser.me/api/portraits/women/1.jpg',
+    message: 'ㅋㅋ22',
+    timestamp: '2025-04-09T14:14',
+  },
 ];
