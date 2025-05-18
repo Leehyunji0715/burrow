@@ -16,6 +16,7 @@ export const contentContainer = style({
   flexDirection: 'column',
   height: '100%',
   overflow: 'auto',
+  padding: '1rem',
 });
 
 const contentPadding = style({

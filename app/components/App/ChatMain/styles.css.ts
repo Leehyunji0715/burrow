@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { themeContract } from '~/styles/themes.css';
 import { vars } from '~/styles/variables.css';
 
-const MESSAGE_GAP = '2rem';
+const MESSAGE_GAP = '.5rem';
 
 export const container = style({
   height: '100%',
@@ -11,7 +11,7 @@ export const container = style({
   flexDirection: 'column',
   fontSize: vars.fontSize.medium,
   padding: '1rem 2rem',
-  gap: '1rem'
+  gap: '1rem',
 });
 
 export const chatContainer = style({
@@ -23,8 +23,8 @@ export const chatContainer = style({
 });
 
 export const chatDate = style({
-  textAlign: 'center'
-})
+  textAlign: 'center',
+});
 
 export const chatSection = style({
   display: 'flex',
@@ -37,7 +37,7 @@ export const chatMessageItem = style({
   display: 'flex',
   gap: '1rem',
   alignItems: 'center',
-  position: 'relative'
+  position: 'relative',
 });
 
 export const curUserchatMessageItem = style([
@@ -54,16 +54,15 @@ export const messageMetaInfo = style({
   fontSize: '85%',
   opacity: '.75',
   display: 'flex',
-  gap: '1.5rem'
-})
-
+  gap: '1.5rem',
+});
 
 export const chatMessage = style({
   display: 'inline-block',
   padding: '.5rem 1rem',
   background: themeContract.app.background,
   maxWidth: '70%',
-  borderRadius: 5
+  borderRadius: 5,
 });
 
 export const curUserChatMessage = style([
@@ -75,19 +74,19 @@ export const curUserChatMessage = style([
 
 export const inputTextContainer = style({
   padding: '2rem 4rem',
-})
+});
 
 export const inputTextSlot = style({
-  padding: '.5rem'
-})
+  padding: '.5rem',
+});
 
 export const inputText = style({
-  height: '4.5rem'
-})
+  height: '4.5rem',
+});
 
 export const inputTextButton = style({
   cursor: 'pointer',
   boxShadow: 'none',
   color: themeContract.colors.text,
-  fontSize: vars.fontSize.medium2
-})
+  fontSize: vars.fontSize.medium2,
+});

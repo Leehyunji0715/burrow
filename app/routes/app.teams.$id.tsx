@@ -1,10 +1,9 @@
-import { Avatar, Flex } from '@radix-ui/themes';
+import { Flex } from '@radix-ui/themes';
 import type { LoaderFunctionArgs } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { Outlet, useLoaderData, useLocation } from '@remix-run/react';
 import { useEffect, useState } from 'react';
-import { FaPlus, FaRegEdit } from 'react-icons/fa';
-import { Button, Separator } from '~/components';
+import { Separator } from '~/components';
 import { Team, sampleGetMyTeam } from '~/model/team';
 
 import { TeamAvatar } from '~/components/app';
@@ -18,7 +17,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 export default function TeamsContent() {
   const { id = '' } = useLoaderData<typeof loader>();
   const [team, setTeam] = useState<Team>({ id: '', name: '' });
-  const location = useLocation();
 
   useEffect(() => {
     if (!id) return;
@@ -34,26 +32,12 @@ export default function TeamsContent() {
           <TeamAvatar src='' fallback={team.name} />
           <span>{team.name}</span>
         </Flex>
-        <AddButton pathname={location.pathname} />
       </Flex>
       <Separator />
       <Outlet />
     </div>
   );
 }
-
-const AddButton = ({ pathname }: { pathname: string }) => {
-  if (pathname.includes('dashboard')) {
-    return null;
-  } else if (pathname.includes('files')) {
-    return (
-      <Button>
-        <FaPlus />
-        파일 추가
-      </Button>
-    );
-  }
-};
 
 const dataList = [
   {
