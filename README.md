@@ -10,6 +10,18 @@ Run the dev server:
 npm run dev
 ```
 
+## Setup
+
+### 1. DB Setup
+
+1. Rename file '.env.copy' to '.env'
+2. Enter PostgresSQL DB connection information to 'DATABASE_URL'
+3. Run the following command
+
+```shellscript
+npx prisma migrate dev --name init
+```
+
 ## Deployment
 
 First, build your app for production:
