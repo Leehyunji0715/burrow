@@ -3,8 +3,6 @@ import { Link } from '@remix-run/react';
 import { Form } from 'radix-ui';
 import { Button, InputText } from '~/components';
 
-import common from '~/styles/common.css';
-
 import * as styles from './form.css';
 
 export const LoginForm = () => {

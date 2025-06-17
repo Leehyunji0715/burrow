@@ -1,8 +1,7 @@
 import { Flex } from '@radix-ui/themes';
 import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
-import { Form } from '@remix-run/react';
+import { Form, useLoaderData } from '@remix-run/react';
 import { useRef } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { Button } from '~/components';

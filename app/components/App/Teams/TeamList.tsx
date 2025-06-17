@@ -1,7 +1,3 @@
 export const TeamList = () => {
-    return (
-        <div>
-            TeamList
-        </div>
-    );
+  return <div>TeamList</div>;
 };

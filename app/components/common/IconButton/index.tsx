@@ -9,9 +9,12 @@ type Props = IconButtonProps & {
 };
 
 export const IconButton = forwardRef(
-  ({ bgType = 'primary', className = '', ...props }: Props, ref: ForwardedRef<HTMLButtonElement>) => {
+  (
+    { bgType = 'primary', className = '', ...props }: Props,
+    ref: ForwardedRef<HTMLButtonElement>
+  ) => {
     const getBg = () => {
-      switch(bgType) {
+      switch (bgType) {
         case 'primary':
           return styles.primary;
         case 'highlight':

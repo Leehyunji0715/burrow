@@ -18,5 +18,5 @@ export const heading = style({
   height: '5rem',
   flexShrink: 0,
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
 });

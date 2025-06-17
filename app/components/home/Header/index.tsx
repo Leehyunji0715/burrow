@@ -1,8 +1,9 @@
 import wave from '~/assets/wave.svg';
 
+import { routes } from '~/constant/routes';
+
 import { Button } from '../../common/Button';
 import * as styles from './style.css';
-import { routes } from '~/constant/routes';
 
 export const Header = () => {
   return (
@@ -14,7 +15,9 @@ export const Header = () => {
             <span className={styles.subMessage}>for team success</span>
           </div>
           <a href={`${routes.app.base}/${routes.app.chat}`}>
-            <Button bgType='highlight' className={styles.headButton}>START</Button>
+            <Button bgType='highlight' className={styles.headButton}>
+              START
+            </Button>
           </a>
         </div>
       </header>
