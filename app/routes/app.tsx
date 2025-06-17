@@ -2,7 +2,7 @@ import { Outlet } from '@remix-run/react';
 
 import { AppNavigation } from '~/components/app';
 
-import * as styles from './app.css';
+import * as styles from '~/styles/app.css';
 
 export default function App() {
   return (

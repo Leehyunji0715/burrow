@@ -4,7 +4,7 @@ import { Outlet } from '@remix-run/react';
 
 import { MyTeamList } from '~/components/app';
 
-import * as styles from './app.$type.css';
+import * as styles from '~/styles/app.$type.css';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   return json({ type: params.type });

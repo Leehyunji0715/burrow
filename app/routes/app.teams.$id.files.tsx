@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { Button } from '~/components';
 
-import * as styles from './app.teams.css';
+import * as styles from '~/styles/app.teams.css';
 
 export const action = async ({ params, request }: ActionFunctionArgs) => {
   const formData = await request.formData();

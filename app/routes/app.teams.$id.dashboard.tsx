@@ -11,7 +11,7 @@ import { fetchAllDashboardItems } from '~/model/dashboard';
 import { DashboardCard } from '~/components/app/DashboardCard';
 import { EditableDashboardCard } from '~/components/app/DashboardCard/EditableDashboardCard';
 
-import * as styles from './app.teams.css';
+import * as styles from '~/styles/app.teams.css';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const dashboardItems = await fetchAllDashboardItems();

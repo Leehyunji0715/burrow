@@ -13,9 +13,9 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 export const action = async ({ params, request }: ActionFunctionArgs) => {
   const formData = await request.formData();
   const formId = formData.get('formId');
+  const data = Object.fromEntries(formData);
   switch (formId) {
     case _formId.SEND_CHAT_MESSAGE:
-      const data = Object.fromEntries(formData);
       console.log({ params, formId, ...data });
       break;
     default:
@@ -25,7 +25,7 @@ export const action = async ({ params, request }: ActionFunctionArgs) => {
 };
 
 export default function AppContent() {
-  const { id = '', type = '' } = useLoaderData<typeof loader>();
+  const { id = '' /* , type = '' */ } = useLoaderData<typeof loader>();
 
   return <ChatMain chatId={id} />;
 }
