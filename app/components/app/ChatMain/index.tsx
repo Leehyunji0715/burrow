@@ -1,7 +1,7 @@
 import { Avatar, IconButton, TextField } from '@radix-ui/themes';
-import { Form } from '@remix-run/react';
 import { useRef } from 'react';
 import { PiPaperPlaneRight, PiPaperclip } from 'react-icons/pi';
+import { Form } from 'react-router';
 import { convertToFormattedDate, getDateName } from '~/utils/datetime';
 
 import { formId } from '~/constant/forms';
@@ -44,8 +44,8 @@ export const ChatMain = ({ chatId }: Props) => {
         acc[date][dateTime].push(cur);
         return acc;
       },
-      {} as Record<string, Record<string, MessageType[]>>
-    )
+      {} as Record<string, Record<string, MessageType[]>>,
+    ),
   );
   const orderedDates = Object.keys(messageByDate.current).sort();
 

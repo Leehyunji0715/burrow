@@ -1,13 +1,12 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
-import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import type { ActionFunctionArgs, LoaderFunctionArgs } from 'react-router';
+import { useLoaderData } from 'react-router';
 
 import { ChatMain } from '~/components/app';
 
 import { formId as _formId } from '~/constant/forms';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  return json({ id: params.id, type: params.type });
+  return { id: params.id, type: params.type };
 };
 
 export const action = async ({ params, request }: ActionFunctionArgs) => {

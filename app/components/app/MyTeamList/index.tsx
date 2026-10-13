@@ -1,7 +1,7 @@
-import { NavLink } from '@remix-run/react';
 import { Accordion } from 'radix-ui';
 import { ForwardedRef, ReactNode, forwardRef } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
+import { NavLink } from 'react-router';
 import { Team } from '~/model/team';
 
 import { Separator } from '~/components/';
@@ -45,7 +45,7 @@ export const MyTeamList = () => {
 const AccordionTrigger = forwardRef(
   (
     { name, children }: { name: string; children: ReactNode },
-    forwardedRef: ForwardedRef<HTMLButtonElement>
+    forwardedRef: ForwardedRef<HTMLButtonElement>,
   ) => (
     <Accordion.Header className={styles.accordionHeader}>
       <Accordion.Trigger className={styles.accordionTrigger} ref={forwardedRef}>
@@ -54,7 +54,7 @@ const AccordionTrigger = forwardRef(
         {children}
       </Accordion.Trigger>
     </Accordion.Header>
-  )
+  ),
 );
 
 const AccordionContent = forwardRef(
@@ -62,7 +62,7 @@ const AccordionContent = forwardRef(
     <Accordion.Content className={styles.accordionContent} ref={forwardedRef}>
       <div className={styles.accordionContentText}>{children}</div>
     </Accordion.Content>
-  )
+  ),
 );
 
 const myTeams: Team[] = [

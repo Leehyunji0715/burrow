@@ -1,6 +1,6 @@
-import { Link, NavLink } from '@remix-run/react';
 import { BsBell, BsChatLeftText, BsPeople } from 'react-icons/bs';
 import { RiLogoutCircleLine } from 'react-icons/ri';
+import { Link, NavLink } from 'react-router';
 import logo from '~/assets/logo.svg';
 
 import { Separator } from '~/components/';

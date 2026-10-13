@@ -14,7 +14,7 @@ type Props = {
 export const Editor = forwardRef(
   (
     { readOnly, defaultValue, onTextChange, onSelectionChange }: Props,
-    ref: ForwardedRef<Quill>
+    ref: ForwardedRef<Quill>,
   ) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const onTextChangeRef = useRef(onTextChange);
@@ -41,7 +41,9 @@ export const Editor = forwardRef(
         if (!container || container.hasChildNodes()) return;
 
         editorContainer = document.createElement('div');
-        containerRef.current.appendChild(editorContainer);
+        // container 로 이미 null 체크를 했으므로 그것을 쓴다.
+        // (containerRef.current 를 다시 읽으면 체크가 무의미하다)
+        container.appendChild(editorContainer);
 
         quill = new Quill(editorContainer, {
           theme: 'snow',
@@ -63,14 +65,14 @@ export const Editor = forwardRef(
           Quill.events.TEXT_CHANGE,
           (delta: Delta, oldContent: Delta, source: EmitterSource) => {
             onTextChangeRef.current?.(delta, oldContent, source);
-          }
+          },
         );
 
         quill.on(
           Quill.events.SELECTION_CHANGE,
           (range: Range, oldRange: Range, source: EmitterSource) => {
             onSelectionChangeRef.current?.(range, oldRange, source);
-          }
+          },
         );
       });
 
@@ -87,7 +89,7 @@ export const Editor = forwardRef(
     }, [readOnly, defaultValue, ref]);
 
     return <div ref={containerRef}></div>;
-  }
+  },
 );
 
 Editor.displayName = 'Editor';

@@ -1,9 +1,8 @@
 import { Flex } from '@radix-ui/themes';
-import type { LoaderFunctionArgs } from '@remix-run/node';
-import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
+import type { LoaderFunctionArgs } from 'react-router';
+import { useLoaderData } from 'react-router';
 import { ClientOnly } from 'remix-utils/client-only';
 import { Button } from '~/components';
 import { fetchAllDashboardItems } from '~/model/dashboard';
@@ -15,7 +14,7 @@ import * as styles from '~/styles/app.teams.css';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const dashboardItems = await fetchAllDashboardItems();
-  return json({ id: params.id, dashboardItems });
+  return { id: params.id, dashboardItems };
 };
 
 export default function DashboardContent() {

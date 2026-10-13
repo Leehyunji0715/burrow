@@ -1,26 +1,10 @@
-import { vitePlugin as remix } from "@remix-run/dev";
-import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
-import { defineConfig } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
-
-declare module "@remix-run/node" {
-  interface Future {
-    v3_singleFetch: true;
-  }
-}
+import { reactRouter } from '@react-router/dev/vite';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  plugins: [
-    remix({
-      future: {
-        v3_fetcherPersist: true,
-        v3_relativeSplatPath: true,
-        v3_throwAbortReason: true,
-        v3_singleFetch: true,
-        v3_lazyRouteDiscovery: true,
-      },
-    }),
-    tsconfigPaths(),
-    vanillaExtractPlugin()
-  ],
+  // Vite 8 이 tsconfig 의 paths(~/* alias)를 네이티브 해석하므로
+  // vite-tsconfig-paths 플러그인이 필요하지 않다.
+  resolve: { tsconfigPaths: true },
+  plugins: [reactRouter(), vanillaExtractPlugin()],
 });

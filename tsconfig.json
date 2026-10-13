@@ -5,11 +5,12 @@
     "**/.server/**/*.ts",
     "**/.server/**/*.tsx",
     "**/.client/**/*.ts",
-    "**/.client/**/*.tsx"
+    "**/.client/**/*.tsx",
+    ".react-router/types/**/*"
   ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "types": ["@remix-run/node", "vite/client"],
+    "types": ["@react-router/node", "vite/client"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -25,6 +26,13 @@
     "paths": {
       "~/*": ["./app/*"]
     },
+    "rootDirs": [".", "./.react-router/types"],
+
+    // TODO: noUncheckedIndexedAccess 는 기존 코드(ChatMain 날짜 그룹핑)에서
+    // 에러 11건이 나므로 보류했다. 메시지를 DB 로 이관해 해당 로직을
+    // 재작성할 때 함께 켠다. 근거: docs/decisions/0002-lint-rule-set.md
+    // "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
 
     // Vite takes care of building everything, not tsc.
     "noEmit": true

@@ -11,7 +11,7 @@ type Props = ButtonProps & {
 export const Button = forwardRef(
   (
     { bgType = 'primary', className = '', ...props }: Props,
-    ref: ForwardedRef<HTMLButtonElement>
+    ref: ForwardedRef<HTMLButtonElement>,
   ) => {
     const getBg = () => {
       switch (bgType) {
@@ -28,5 +28,5 @@ export const Button = forwardRef(
         {props.children}
       </RadixButton>
     );
-  }
+  },
 );

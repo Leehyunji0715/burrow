@@ -1,8 +1,7 @@
 import { Flex } from '@radix-ui/themes';
-import type { LoaderFunctionArgs } from '@remix-run/node';
-import { json } from '@remix-run/node';
-import { Outlet, useLoaderData } from '@remix-run/react';
 import { useEffect, useState } from 'react';
+import type { LoaderFunctionArgs } from 'react-router';
+import { Outlet, useLoaderData } from 'react-router';
 import { Separator } from '~/components';
 import { Team, sampleGetMyTeam } from '~/model/team';
 
@@ -11,7 +10,7 @@ import { TeamAvatar } from '~/components/app';
 import * as styles from '~/styles/app.teams.css';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  return json({ id: params.id });
+  return { id: params.id };
 };
 
 export default function TeamsContent() {
