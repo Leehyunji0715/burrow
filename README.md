@@ -98,5 +98,8 @@ docs/                  # 문서 (위 표 참조)
 
 ## 브랜치
 
-`develop` 이 본선이다. 작업은 여기서 분기한다 (`feat/...`, `fix/...`).
+- `main` — 릴리즈만. 머지 시 tag(`v0.1.0`)를 붙인다
+- `develop` — 개발 통합. **작업은 여기서 분기한다**
+- `feat/...` — 기능 단위
+
 자세한 내용은 [docs/WORKFLOW.md](docs/WORKFLOW.md).

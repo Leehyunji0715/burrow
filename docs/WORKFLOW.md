@@ -105,43 +105,81 @@ it('5초 후 재연결을 시도한다', () => {
 
 ## 2. 브랜치 전략
 
-### 선택: Trunk-Based Development (단순 버전)
+### 선택: develop 통합 + main 릴리즈 (단순화한 Git Flow)
 
 ```mermaid
 gitGraph
-    commit id: "main"
+    commit id: "init"
+    branch develop
+    commit id: "개발 통합"
     branch feat-ws-handshake
     commit id: "테스트 추가"
     commit id: "구현"
+    checkout develop
+    merge feat-ws-handshake
+    commit id: "다음 기능들"
     checkout main
-    merge feat-ws-handshake id: "squash merge"
-    branch feat-heartbeat
-    commit id: "작업중"
+    merge develop tag: "v0.1.0"
 ```
 
-`main`은 **항상 배포 가능한 상태**(= **main is always green**)를 유지하고,
-기능 브랜치는 **1~3일만 살다가** 사라진다.
+| 브랜치     | 역할                                                    |
+| ---------- | ------------------------------------------------------- |
+| `main`     | **릴리즈만.** 동작이 보장된 상태. 머지 시 태그를 붙인다 |
+| `develop`  | **개발 통합.** 기능 브랜치가 모이는 곳                  |
+| `feat/...` | 기능 단위. **1~3일만 살다가** 사라진다                  |
 
-**왜 Git Flow가 아닌가:**
-Git Flow(`develop` + `release` + `hotfix`)는 **정해진 날짜에 버전을 출시하는** 제품에 맞는다.
-웹 서비스처럼 수시 배포하는 환경에서는 브랜치가 오래 살아 머지 충돌만 키운다.
-요즘 실무(특히 웹)는 trunk-based 또는 GitHub Flow가 주류다.
-혼자 하는 프로젝트에 Git Flow를 쓰면 의식(ceremony)만 남고 이득이 없다.
+**왜 이 구조인가:**
+
+- **`main` 이 명함이다.** 저장소를 처음 여는 사람은 `main` 을 본다.
+  거기가 항상 "동작하는 상태"인 것에 실제 가치가 있다
+- 실시간 작업은 **중간에 깨지는 구간이 생긴다.** 예를 들어 7단계 Redis 수평 확장은
+  서버 2대 구성이 전제여서 작업 중에는 로컬에서도 안 돌 수 있다.
+  그런 상태를 `main` 에 올리지 않는다
+- `main` 머지 시점에 **tag**(`v0.1.0`)를 붙이면 릴리즈 이력이 히스토리에 남는다.
+  GitHub **Releases** 페이지로도 보인다
+
+**정식 Git Flow 와의 차이:** `release/`·`hotfix/` 브랜치는 **만들지 않는다.**
+여러 버전을 동시 유지보수해야 할 때 필요한 장치인데, 그런 상황이 아니면
+의식(**ceremony**)만 남는다. 필요해지면 그때 추가한다.
 
 ### 규칙
 
-- `main`에 **직접 커밋하지 않는다.** 항상 브랜치 → PR → 머지
+- `main`·`develop` 에 **직접 커밋하지 않는다.** 항상 기능 브랜치 → PR → 머지
+- 기능 브랜치는 **`develop` 에서 분기**하고 `develop` 으로 머지한다
+- `main` 으로는 **릴리즈할 때만** 머지하고 **tag** 를 붙인다
+  (**semantic versioning**: `v0.1.0` → `v0.2.0` → `v1.0.0`)
 - 브랜치는 **짧게 산다** (최대 3일). 길어지면 쪼갠다
-- 브랜치명: `<type>/<무엇>` — 예: `feat/ws-handshake`, `fix/presence-leak`, `docs/adr-0002`
-- 머지는 **squash merge**. `main` 히스토리를 한 기능=한 커밋으로 유지
+- 브랜치명: `<type>/<무엇>` — 예: `feat/ws-handshake`, `fix/presence-leak`
+- 머지는 **squash merge**. `develop` 히스토리를 한 기능=한 커밋으로 유지
 - 머지 후 브랜치 삭제
 
 ### 혼자서도 PR을 쓰는 이유
 
 1. **diff를 리뷰어 시선으로 다시 본다** — 자기 코드의 오류가 PR 화면에서 더 잘 보인다
+   (**self-review**)
 2. PR 설명을 쓰면서 **"내가 왜 이렇게 했는지"가 정리된다**
-3. CI가 PR에서 돌아 `main`을 지킨다
+3. CI가 PR에서 돌아 `develop`을 지킨다
 4. 실무에서 PR 쓰는 습관 그 자체가 연습 대상이다
+
+### 릴리즈 절차
+
+`develop` 이 동작하는 상태에 도달하면:
+
+```sh
+# 1. develop 이 깨끗한지 확인
+npm run verify && npm run build
+
+# 2. main 으로 머지
+git switch main
+git merge develop --no-ff      # 머지 커밋을 남긴다 (릴리즈 지점이 보이도록)
+
+# 3. 태그
+git tag -a v0.1.0 -m "실시간 채팅 기본 동작"
+git push origin main --tags
+```
+
+`--no-ff`(no fast-forward)를 쓰는 이유: fast-forward 로 머지하면 **머지 커밋이 안 생겨서**
+"언제 릴리즈했는지"가 히스토리에서 사라진다. 릴리즈는 지점이 보여야 한다.
 
 ### 커밋 메시지: Conventional Commits
 

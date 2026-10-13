@@ -81,7 +81,7 @@ gitGraph
 | 용어                        | 뜻                                                                                                       |
 | --------------------------- | -------------------------------------------------------------------------------------------------------- |
 | **short-lived branch**      | 짧게 사는 브랜치 (1~3일). long-lived branch의 반대                                                       |
-| **trunk-based development** | `main`(trunk) 중심으로 짧은 브랜치만 쓰는 전략. 이 프로젝트가 채택                                       |
+| **trunk-based development** | `main`(trunk) 중심으로 짧은 브랜치만 쓰는 전략                                                           |
 | **blast radius**            | 변경의 영향 범위. "폭발 반경"이라는 비유                                                                 |
 | **main is always green**    | `main`은 항상 CI 통과 상태를 유지한다는 원칙                                                             |
 | **shift left**              | 문제를 **개발 흐름의 앞쪽**에서 잡는다는 개념.<br/>왼쪽(개발) ← 오른쪽(운영) 축에서 왼쪽으로 옮긴다는 뜻 |
@@ -488,19 +488,23 @@ GitHub 저장소 → Settings → Branches → `main` 규칙 추가:
 
 ### 브랜치·머지
 
-| 용어                                    | 뜻                                                              |
-| --------------------------------------- | --------------------------------------------------------------- |
-| **trunk-based development**             | `main`(trunk) 중심 + 짧은 브랜치. 이 프로젝트 채택              |
-| **Git Flow**                            | `develop`/`release`/`hotfix`를 쓰는 전략. 정기 버전 출시 제품용 |
-| **GitHub Flow**                         | trunk-based의 단순 버전 (브랜치 → PR → 머지)                    |
-| **short/long-lived branch**             | 짧게/오래 사는 브랜치                                           |
-| **merge hell** (= **integration hell**) | 머지 지옥                                                       |
-| **drift**                               | 내 브랜치가 `main`과 점점 달라지는 현상                         |
-| **squash merge**                        | 여러 커밋을 하나로 합쳐 머지. `main` 히스토리를 깔끔하게        |
-| **fast-forward**                        | 분기 없이 포인터만 전진하는 머지                                |
-| **rebase**                              | 내 커밋을 `main` 최신 위로 옮겨 붙이기                          |
-| **branch protection**                   | `main`에 규칙(CI 통과 필수 등)을 강제하는 GitHub 설정           |
-| **CODEOWNERS**                          | 파일별 리뷰 담당자를 지정하는 파일                              |
+| 용어                                    | 뜻                                                                            |
+| --------------------------------------- | ----------------------------------------------------------------------------- |
+| **trunk-based development**             | `main`(trunk) 중심 + 짧은 브랜치                                              |
+| **Git Flow**                            | `develop`/`release`/`hotfix`를 쓰는 전략. 정기 버전 출시 제품용               |
+| **GitHub Flow**                         | trunk-based의 단순 버전 (브랜치 → PR → 머지)                                  |
+| **단순화한 Git Flow**                   | `develop` 통합 + `main` 릴리즈, `release`/`hotfix` 없음. **이 프로젝트 채택** |
+| **tag**                                 | 특정 커밋에 붙이는 이름(`v0.1.0`). 릴리즈 지점 표시                           |
+| **semantic versioning** (semver)        | `major.minor.patch` 버전 규칙                                                 |
+| **`--no-ff`** (no fast-forward)         | 머지 커밋을 강제로 남긴다. 릴리즈 지점이 히스토리에 보이도록                  |
+| **short/long-lived branch**             | 짧게/오래 사는 브랜치                                                         |
+| **merge hell** (= **integration hell**) | 머지 지옥                                                                     |
+| **drift**                               | 내 브랜치가 `main`과 점점 달라지는 현상                                       |
+| **squash merge**                        | 여러 커밋을 하나로 합쳐 머지. `main` 히스토리를 깔끔하게                      |
+| **fast-forward**                        | 분기 없이 포인터만 전진하는 머지                                              |
+| **rebase**                              | 내 커밋을 `main` 최신 위로 옮겨 붙이기                                        |
+| **branch protection**                   | `main`에 규칙(CI 통과 필수 등)을 강제하는 GitHub 설정                         |
+| **CODEOWNERS**                          | 파일별 리뷰 담당자를 지정하는 파일                                            |
 
 ### 배포
 
