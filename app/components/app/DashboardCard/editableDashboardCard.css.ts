@@ -1,7 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
 import { themeContract } from '~/styles/themes.css';
-import { vars } from '~/styles/variables.css';
 
 import { CARD_BORDER_COLOR, CARD_PADDING, CARD_RADIUS, CARD_SHADOW } from './card.css';
 

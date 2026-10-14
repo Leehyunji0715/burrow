@@ -1,2 +1,9 @@
-# Ignore artifacts:
+# 생성물·산출물
+build
+node_modules
+.react-router
+generated
+package-lock.json
+
+# husky 스크립트
 .husky

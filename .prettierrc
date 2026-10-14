@@ -5,9 +5,15 @@
   "printWidth": 100,
   "tabWidth": 2,
   "useTabs": false,
-  "trailingComma": "es5",
+  "trailingComma": "all",
   "bracketSpacing": true,
-  "importOrder": ["<THIRD_PARTY_MODULES>", "^~/components/(.*)$", "^~/styles/(.*)$", "^~/constant/(.*)$", "^[./]"],
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^~/components/(.*)$",
+    "^~/styles/(.*)$",
+    "^~/constant/(.*)$",
+    "^[./]"
+  ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "plugins": ["@trivago/prettier-plugin-sort-imports"]

@@ -1,7 +1,7 @@
 import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
-import type { LinksFunction } from '@remix-run/node';
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import type { LinksFunction } from 'react-router';
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
 import '~/styles/font.css';
 import '~/styles/global.css';

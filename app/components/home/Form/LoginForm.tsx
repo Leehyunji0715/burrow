@@ -1,6 +1,6 @@
 import { Flex, Text } from '@radix-ui/themes';
-import { Link } from '@remix-run/react';
 import { Form } from 'radix-ui';
+import { Link } from 'react-router';
 import { Button, InputText } from '~/components';
 
 import * as styles from './form.css';

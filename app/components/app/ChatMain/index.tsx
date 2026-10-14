@@ -1,7 +1,7 @@
 import { Avatar, IconButton, TextField } from '@radix-ui/themes';
-import { Form } from '@remix-run/react';
-import { useRef } from 'react';
+import { useMemo } from 'react';
 import { PiPaperPlaneRight, PiPaperclip } from 'react-icons/pi';
+import { Form } from 'react-router';
 import { convertToFormattedDate, getDateName } from '~/utils/datetime';
 
 import { formId } from '~/constant/forms';
@@ -25,42 +25,52 @@ type ChatInfo = {
   isFirstMessage?: boolean;
 };
 
-export const ChatMain = ({ chatId }: Props) => {
-  const messageByDate = useRef<Record<string, Record<string, MessageType[]>>>(
-    messages.reduce(
-      (acc, cur) => {
-        const dateTime = new Date(cur.timestamp).toISOString();
-        const date = dateTime.split('T')[0];
-        if (!acc[date]) {
-          acc[date] = {};
-        }
-        if (!acc[date][dateTime]) {
-          acc[date][dateTime] = [];
-        }
+/**
+ * 메시지를 날짜 > 시각 > 목록 으로 묶는다.
+ *
+ * useRef 가 아니라 useMemo 를 쓰는 이유: ref 는 바뀌어도 리렌더를 일으키지 않아
+ * 렌더에 쓰는 값을 담으면 화면이 갱신되지 않는다(react-hooks/refs).
+ * 지금은 messages 가 상수라 티가 안 나지만, DB 에서 받아오면 새 메시지가
+ * 화면에 나타나지 않는다.
+ *
+ * 또한 원본 메시지 객체를 수정하지 않고 사본에 isFirstMessage 를 넣는다.
+ * 원본을 건드리면 같은 입력으로 두 번 계산할 때 결과가 달라진다.
+ */
+const groupMessagesByDate = (list: MessageType[]) => {
+  const grouped: Record<string, Record<string, MessageType[]>> = {};
 
-        if (!cur.isCurrentUser && acc[date][dateTime].every((msg) => !msg.isFirstMessage)) {
-          cur.isFirstMessage = true;
-        }
-        acc[date][dateTime].push(cur);
-        return acc;
-      },
-      {} as Record<string, Record<string, MessageType[]>>
-    )
-  );
-  const orderedDates = Object.keys(messageByDate.current).sort();
+  for (const message of list) {
+    const dateTime = new Date(message.timestamp).toISOString();
+    const date = dateTime.split('T')[0] ?? dateTime;
+
+    grouped[date] ??= {};
+    const slot = (grouped[date][dateTime] ??= []);
+
+    // 같은 시각에 연속으로 온 상대 메시지 중 첫 번째만 보낸이 정보를 표시한다.
+    const isFirstMessage = !message.isCurrentUser && slot.every((msg) => !msg.isFirstMessage);
+
+    slot.push({ ...message, isFirstMessage });
+  }
+
+  return grouped;
+};
+
+export const ChatMain = ({ chatId }: Props) => {
+  const messageByDate = useMemo(() => groupMessagesByDate(messages), []);
+  const orderedDates = Object.keys(messageByDate).sort();
 
   return (
     <div className={styles.container}>
       <div style={{ width: '100%', height: '5rem', background: 'yellow' }}>{chatId}</div>
       <div className={styles.chatContainer}>
         {orderedDates.map((date) => {
-          const orderedDateTime = Object.keys(messageByDate.current[date]).sort();
+          const orderedDateTime = Object.keys(messageByDate[date]).sort();
           return (
             <>
               <div className={styles.chatDate}>{getDateName(date)}</div>
               <ul key={date} className={styles.chatSection}>
                 {orderedDateTime.map((dateTime) => {
-                  return messageByDate.current[date][dateTime].map((msg) => (
+                  return messageByDate[date][dateTime].map((msg) => (
                     <ChatMessage
                       key={msg.id}
                       message={msg}
@@ -121,8 +131,6 @@ const ChatMessage = ({
     </li>
   );
 };
-
-const users = [{ id: '1', name: 'John Doe', email: 'johnDoe@gmail.com' }, {}];
 
 const messages: MessageType[] = [
   {

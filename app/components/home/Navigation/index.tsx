@@ -1,4 +1,4 @@
-import { Link } from '@remix-run/react';
+import { Link } from 'react-router';
 
 import * as styles from './homeNavigation.css';
 
@@ -6,7 +6,7 @@ export const HomeNavigation = () => {
   return (
     <nav className={styles.navContainer}>
       <Link to='/'>
-        <img src='./app/assets/logo.svg' className={styles.logo} />
+        <img src='./app/assets/logo.svg' className={styles.logo} alt='홈으로' />
       </Link>
       <ul className={styles.listContainer}>
         <li className={styles.listItem}>

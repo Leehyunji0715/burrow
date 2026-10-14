@@ -1,0 +1,7 @@
+# 저장소에는 LF로 저장한다 (OS가 달라도 diff가 깨지지 않도록).
+* text=auto eol=lf
+
+# husky hook 은 반드시 LF 여야 한다 (CRLF 면 sh 가 실행하지 못한다).
+.husky/* text eol=lf
+
+package-lock.json -diff linguist-generated

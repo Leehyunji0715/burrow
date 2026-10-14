@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # .nvmrc 를 단일 출처로 사용한다 (로컬과 CI 버전 일치)
+          node-version-file: '.nvmrc'
+          cache: npm
+
+      - run: npm ci
+
+      # typecheck + lint + format:check + test
+      - run: npm run verify
+
+      - run: npm run build
