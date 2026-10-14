@@ -55,7 +55,9 @@ function handleBotRequest(
           pipe(body);
         },
         onShellError(error: unknown) {
-          reject(error);
+          // reject 에는 Error 를 넘긴다 (prefer-promise-reject-errors 규칙).
+          // React 콜백은 unknown 을 주므로 Error 가 아니면 감싼다.
+          reject(error instanceof Error ? error : new Error(String(error)));
         },
         onError(error: unknown) {
           responseStatusCode = 500;
@@ -101,7 +103,9 @@ function handleBrowserRequest(
           pipe(body);
         },
         onShellError(error: unknown) {
-          reject(error);
+          // reject 에는 Error 를 넘긴다 (prefer-promise-reject-errors 규칙).
+          // React 콜백은 unknown 을 주므로 Error 가 아니면 감싼다.
+          reject(error instanceof Error ? error : new Error(String(error)));
         },
         onError(error: unknown) {
           responseStatusCode = 500;

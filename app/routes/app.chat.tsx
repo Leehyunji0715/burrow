@@ -5,7 +5,7 @@ import { ChatRoomList } from '~/components/app';
 
 import * as styles from '~/styles/app.$type.css';
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = ({ params }: LoaderFunctionArgs) => {
   return { type: params.type };
 };
 

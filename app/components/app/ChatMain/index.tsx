@@ -122,8 +122,6 @@ const ChatMessage = ({
   );
 };
 
-const users = [{ id: '1', name: 'John Doe', email: 'johnDoe@gmail.com' }, {}];
-
 const messages: MessageType[] = [
   {
     id: '1',

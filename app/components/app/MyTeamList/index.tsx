@@ -1,5 +1,5 @@
 import { Accordion } from 'radix-ui';
-import { ForwardedRef, ReactNode, forwardRef } from 'react';
+import type { ReactNode, Ref } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 import { NavLink } from 'react-router';
 import { Team } from '~/model/team';
@@ -42,27 +42,35 @@ export const MyTeamList = () => {
   );
 };
 
-const AccordionTrigger = forwardRef(
-  (
-    { name, children }: { name: string; children: ReactNode },
-    forwardedRef: ForwardedRef<HTMLButtonElement>,
-  ) => (
-    <Accordion.Header className={styles.accordionHeader}>
-      <Accordion.Trigger className={styles.accordionTrigger} ref={forwardedRef}>
-        <FaChevronRight className={styles.accorionChevron} aria-hidden />
-        <TeamAvatar src='' fallback={name} />
-        {children}
-      </Accordion.Trigger>
-    </Accordion.Header>
-  ),
+// React 19 부터 ref 를 일반 prop 으로 받는다 (forwardRef 불필요)
+const AccordionTrigger = ({
+  name,
+  children,
+  ref,
+}: {
+  name: string;
+  children: ReactNode;
+  ref?: Ref<HTMLButtonElement>;
+}) => (
+  <Accordion.Header className={styles.accordionHeader}>
+    <Accordion.Trigger className={styles.accordionTrigger} ref={ref}>
+      <FaChevronRight className={styles.accorionChevron} aria-hidden />
+      <TeamAvatar src='' fallback={name} />
+      {children}
+    </Accordion.Trigger>
+  </Accordion.Header>
 );
 
-const AccordionContent = forwardRef(
-  ({ children }: { children: ReactNode }, forwardedRef: ForwardedRef<HTMLDivElement>) => (
-    <Accordion.Content className={styles.accordionContent} ref={forwardedRef}>
-      <div className={styles.accordionContentText}>{children}</div>
-    </Accordion.Content>
-  ),
+const AccordionContent = ({
+  children,
+  ref,
+}: {
+  children: ReactNode;
+  ref?: Ref<HTMLDivElement>;
+}) => (
+  <Accordion.Content className={styles.accordionContent} ref={ref}>
+    <div className={styles.accordionContentText}>{children}</div>
+  </Accordion.Content>
 );
 
 const myTeams: Team[] = [

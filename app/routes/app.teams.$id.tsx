@@ -9,7 +9,7 @@ import { TeamAvatar } from '~/components/app';
 
 import * as styles from '~/styles/app.teams.css';
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = ({ params }: LoaderFunctionArgs) => {
   return { id: params.id };
 };
 

@@ -18,7 +18,7 @@ export const action = async ({ params, request }: ActionFunctionArgs) => {
   return null;
 };
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = ({ params }: LoaderFunctionArgs) => {
   return { id: params.id };
 };
 

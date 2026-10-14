@@ -5,7 +5,7 @@ import { ChatMain } from '~/components/app';
 
 import { formId as _formId } from '~/constant/forms';
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = ({ params }: LoaderFunctionArgs) => {
   return { id: params.id, type: params.type };
 };
 
