@@ -19,9 +19,13 @@ export default function TeamsContent() {
 
   useEffect(() => {
     if (!id) return;
-    sampleGetMyTeam(id).then((response) => {
-      setTeam(response ?? { id: '', name: '' });
-    });
+    sampleGetMyTeam(id)
+      .then((response) => {
+        setTeam(response ?? { id: '', name: '' });
+      })
+      .catch((error) => {
+        console.error('MyTeam 데이터 로드 실패:', error);
+      });
   }, [id]);
 
   return (
