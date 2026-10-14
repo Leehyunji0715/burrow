@@ -2,7 +2,7 @@ import { Flex } from '@radix-ui/themes';
 import DOMPurify from 'dompurify';
 import type Quill from 'quill';
 import { Delta, Op } from 'quill';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
 
 import { Button } from '~/components/common/Button';
@@ -13,18 +13,15 @@ import { TeamAvatar } from '../TeamAvatar';
 import * as styles from './editableDashboardCard.css';
 
 export const EditableDashboardCard = () => {
-  const [readOnly, setReadOnly] = useState<boolean>(false);
-  const [testValue, setTestValue] = useState<Delta | Op[]>([]);
-  const [html, setHTML] = useState('');
+  // TODO: 편집/읽기 모드 전환이 필요해지면 useState 로 되돌린다.
+  const readOnly = false;
+  // TODO: 초기값(수정 모드에서 기존 내용 불러오기)이 필요해지면 prop 으로 받는다.
+  const initialContent: Delta | Op[] = [];
+  // TODO: 게시 기능 구현 시 서버 전송에 사용
+  const [_html, setHTML] = useState('');
 
   // Use a ref to access the quill instance directly
   const quillRef = useRef<Quill>(null);
-
-  useEffect(() => {
-    import('quill').then(({ Delta }) => {
-      // setTestValue(new Delta().insert('메세지를 입력하세요\n'));
-    });
-  }, []);
 
   return (
     <Flex direction='column' className={styles.container}>
@@ -41,7 +38,7 @@ export const EditableDashboardCard = () => {
             <Editor
               ref={quillRef}
               readOnly={readOnly}
-              defaultValue={testValue}
+              defaultValue={initialContent}
               onSelectionChange={() => {}}
               onTextChange={() => {
                 setHTML(DOMPurify.sanitize(quillRef.current?.root.innerHTML || ''));
@@ -49,7 +46,7 @@ export const EditableDashboardCard = () => {
             />
             {/* <div
               dangerouslySetInnerHTML={{
-                __html: html,
+                __html: _html,
               }}
             /> */}
           </div>
