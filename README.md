@@ -62,15 +62,16 @@ npm run verify         # 전체 검사 (CI 와 동일)
 
 ## 문서
 
-| 문서                                                               | 내용                        |
-| ------------------------------------------------------------------ | --------------------------- |
-| [docs/PROGRESS.md](docs/PROGRESS.md)                               | 진행 상황·로드맵            |
-| [docs/WORKFLOW.md](docs/WORKFLOW.md)                               | TDD·브랜치 전략·품질 게이트 |
-| [docs/STACK.md](docs/STACK.md)                                     | 기술 선택 근거              |
-| [docs/CICD.md](docs/CICD.md)                                       | CI/CD 개념과 설정           |
-| [docs/notes/realtime-glossary.md](docs/notes/realtime-glossary.md) | 실시간 용어집 + 개념 도식   |
-| [docs/decisions/](docs/decisions/)                                 | 기술 결정 기록 (ADR)        |
-| [docs/notes/](docs/notes/)                                         | 학습 노트·디버깅 로그       |
+| 문서                                                                               | 내용                            |
+| ---------------------------------------------------------------------------------- | ------------------------------- |
+| [docs/PROGRESS.md](docs/PROGRESS.md)                                               | 진행 상황·로드맵                |
+| [docs/WORKFLOW.md](docs/WORKFLOW.md)                                               | TDD·브랜치 전략·품질 게이트     |
+| [docs/STACK.md](docs/STACK.md)                                                     | 기술 선택 근거                  |
+| [docs/CICD.md](docs/CICD.md)                                                       | CI/CD 개념과 설정               |
+| [docs/notes/realtime-glossary.md](docs/notes/realtime-glossary.md)                 | 실시간 용어집 + 개념 도식       |
+| [docs/notes/ssr-and-browser-only-libs.md](docs/notes/ssr-and-browser-only-libs.md) | SSR 과 브라우저 전용 라이브러리 |
+| [docs/decisions/](docs/decisions/)                                                 | 기술 결정 기록 (ADR)            |
+| [docs/notes/](docs/notes/)                                                         | 학습 노트·디버깅 로그           |
 
 ## 프로젝트 구조
 
