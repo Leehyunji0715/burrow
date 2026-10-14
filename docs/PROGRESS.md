@@ -37,20 +37,24 @@
 
 ## 다음 할 일
 
-### A. 린트 40건 정리 (우선)
+### A. 린트 정리 — ✅ 완료 (40건 → 0건)
 
-타입 인식 린팅으로 드러난 **기존 코드 품질 문제**. `verify` 가 통과하지 않으므로 먼저 치운다.
+`verify` 통과, CI 녹색. 상세는 PR #1 과 커밋 히스토리 참조.
 
-- [ ] **`no-floating-promises` 3건** ⚠️ — `await` 누락. **실제 버그 가능성. 최우선**
-- [ ] `no-unused-vars` 8건 — 정리
-- [ ] `require-await` 5건 — `async` 인데 `await` 없는 loader
-- [ ] `no-unsafe-*` 8건 — Quill `any` 관련
-- [ ] `react/display-name` 5건 — `forwardRef`.
-      **React 19 에서는 `forwardRef` 자체가 불필요하므로 제거하면 같이 해결된다**
-- [ ] `prefer-promise-reject-errors` 2건, `unbound-method` 2건
-- [ ] `jsx-a11y/alt-text` 2건 — 접근성
-- [ ] `react-hooks/refs`, `set-state-in-effect` 3건 — React 19 엄격화
-- [ ] `ChatMain` React key 경고 (fragment 에 key 없음)
+정리 중 **발견했지만 고치지 않은 것**:
+
+- [ ] **`IconButton` 의 `bgType` prop 이 동작하지 않는다** —
+      `Button` 과 달리 `className` 에 `styles.highlight` 가 하드코딩되어
+      `getBg()` 를 호출하지 않는다. 고치면 화면 색이 바뀌므로
+      디자인 의도 확인 필요. 코드에 `FIXME` 로 표시됨
+- [ ] `ChatMain` React key 경고 (fragment 에 `key` 없음)
+- [ ] 서비스명이 아직 `New Remix App` (`app/routes/_index.tsx` 의 `meta`)
+
+**복기 대상** (Claude 가 작성한 부분 — 원리를 확인하고 싶으면 요청):
+
+- `ChatMain` 의 `useRef` → `useMemo` 전환, 그룹핑 로직 순수 함수 분리
+- `app.teams.$id.dashboard.tsx` 의 effect 내 setState 제거 (prevId 비교 패턴)
+- `groupMessagesByDate` 는 순수 함수라 **TDD 연습 소재로 적합**
 
 ### B. DB 스키마 설계 **(B급 — 선택지 받고 직접 결정)**
 
