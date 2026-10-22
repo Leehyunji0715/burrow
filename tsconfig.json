@@ -30,7 +30,7 @@
 
     // TODO: noUncheckedIndexedAccess 는 기존 코드(ChatMain 날짜 그룹핑)에서
     // 에러 11건이 나므로 보류했다. 메시지를 DB 로 이관해 해당 로직을
-    // 재작성할 때 함께 켠다. 근거: docs/decisions/0002-lint-rule-set.md
+    // 재작성할 때 함께 켠다.
     // "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
 

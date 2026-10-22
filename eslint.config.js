@@ -1,6 +1,5 @@
 // ESLint flat config (ESLint 9+)
 //
-// 이전 .eslintrc.cjs 와의 차이는 docs/notes/eslint-flat-config.md 참조.
 // 핵심: 중첩 overrides 대신 "설정 객체의 배열"이며, 각 객체가 files 로 적용 범위를 정한다.
 // 배열은 위에서 아래로 병합되므로 뒤에 오는 것이 앞을 덮는다.
 import js from '@eslint/js';
