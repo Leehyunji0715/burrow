@@ -3,7 +3,6 @@ import DOMPurify from 'dompurify';
 import type Quill from 'quill';
 import { Delta, Op } from 'quill';
 import { useRef, useState } from 'react';
-import { ClientOnly } from 'remix-utils/client-only';
 
 import { Button } from '~/components/common/Button';
 import { Editor } from '~/components/common/Editor/index.client';
@@ -32,26 +31,22 @@ export const EditableDashboardCard = () => {
       <div className={styles.titleContainer}>
         <InputText placeholder='제목 추가' />
       </div>
-      <ClientOnly fallback={<div>로딩 중...</div>}>
-        {() => (
-          <div className={styles.editorContainer}>
-            <Editor
-              ref={quillRef}
-              readOnly={readOnly}
-              defaultValue={initialContent}
-              onSelectionChange={() => {}}
-              onTextChange={() => {
-                setHTML(DOMPurify.sanitize(quillRef.current?.root.innerHTML || ''));
-              }}
-            />
-            {/* <div
+      <div className={styles.editorContainer}>
+        <Editor
+          ref={quillRef}
+          readOnly={readOnly}
+          defaultValue={initialContent}
+          onSelectionChange={() => {}}
+          onTextChange={() => {
+            setHTML(DOMPurify.sanitize(quillRef.current?.root.innerHTML || ''));
+          }}
+        />
+        {/* <div
               dangerouslySetInnerHTML={{
                 __html: _html,
               }}
             /> */}
-          </div>
-        )}
-      </ClientOnly>
+      </div>
       <div className={styles.footerContainer}>
         <Button className={styles.footerButton}>게시</Button>
       </div>

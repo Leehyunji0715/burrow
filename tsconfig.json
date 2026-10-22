@@ -1,16 +1,8 @@
 {
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/.server/**/*.ts",
-    "**/.server/**/*.tsx",
-    "**/.client/**/*.ts",
-    "**/.client/**/*.tsx",
-    ".react-router/types/**/*"
-  ],
+  "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "types": ["@react-router/node", "vite/client"],
+    "types": ["vite/client"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -26,7 +18,6 @@
     "paths": {
       "~/*": ["./app/*"]
     },
-    "rootDirs": [".", "./.react-router/types"],
 
     // TODO: noUncheckedIndexedAccess 는 기존 코드(ChatMain 날짜 그룹핑)에서
     // 에러 11건이 나므로 보류했다. 메시지를 DB 로 이관해 해당 로직을

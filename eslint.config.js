@@ -17,7 +17,6 @@ export default tseslint.config(
     ignores: [
       'build/**',
       'node_modules/**',
-      '.react-router/**', // 생성된 라우트 타입
       'generated/**', // Prisma 생성 클라이언트
     ],
   },
@@ -93,7 +92,7 @@ export default tseslint.config(
 
   // ── 5. Node 환경 설정 파일 ──────────────────────────────────────────
   {
-    files: ['*.config.{js,ts}', 'vitest.config.ts', 'react-router.config.ts'],
+    files: ['*.config.{js,ts}', 'vitest.config.ts'],
     languageOptions: { globals: { ...globals.node } },
   },
 

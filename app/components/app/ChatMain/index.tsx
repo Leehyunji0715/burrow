@@ -1,7 +1,6 @@
 import { Avatar, IconButton, TextField } from '@radix-ui/themes';
 import { useMemo } from 'react';
 import { PiPaperPlaneRight, PiPaperclip } from 'react-icons/pi';
-import { Form } from 'react-router';
 import { convertToFormattedDate, getDateName } from '~/utils/datetime';
 
 import { formId } from '~/constant/forms';
@@ -59,6 +58,13 @@ export const ChatMain = ({ chatId }: Props) => {
   const messageByDate = useMemo(() => groupMessagesByDate(messages), []);
   const orderedDates = Object.keys(messageByDate).sort();
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // 새로고침 막기
+    const message = new FormData(e.currentTarget).get('message'); // name='message' 인 입력값
+    console.log({ chatId, message }); // TODO: WebSocket 전송으로 교체
+    e.currentTarget.reset(); // 보낸 뒤 입력창 비우기
+  };
+
   return (
     <div className={styles.container}>
       <div style={{ width: '100%', height: '5rem', background: 'yellow' }}>{chatId}</div>
@@ -83,8 +89,11 @@ export const ChatMain = ({ chatId }: Props) => {
           );
         })}
       </div>
-      <Form id={formId.SEND_CHAT_MESSAGE} className={styles.inputTextContainer} method='post'>
-        <input type='hidden' name='formId' value={formId.SEND_CHAT_MESSAGE} />
+      <form
+        id={formId.SEND_CHAT_MESSAGE}
+        className={styles.inputTextContainer}
+        onSubmit={handleSubmit}
+      >
         <TextField.Root
           name='message'
           placeholder='메시지를 입력하세요.'
@@ -101,7 +110,7 @@ export const ChatMain = ({ chatId }: Props) => {
             </IconButton>
           </TextField.Slot>
         </TextField.Root>
-      </Form>
+      </form>
     </div>
   );
 };

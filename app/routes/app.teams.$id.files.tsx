@@ -1,29 +1,13 @@
 import { Flex } from '@radix-ui/themes';
 import { useRef } from 'react';
 import { FaPlus } from 'react-icons/fa';
-import type { ActionFunctionArgs, LoaderFunctionArgs } from 'react-router';
-import { Form, useLoaderData } from 'react-router';
+import { useParams } from 'react-router';
 import { Button } from '~/components';
 
 import * as styles from '~/styles/app.teams.css';
 
-export const action = async ({ params, request }: ActionFunctionArgs) => {
-  const formData = await request.formData();
-  const filename = formData.get('filename');
-  console.log('filename', filename);
-  console.log({
-    params,
-    request,
-  });
-  return null;
-};
-
-export const loader = ({ params }: LoaderFunctionArgs) => {
-  return { id: params.id };
-};
-
 export default function AppContent() {
-  const { id = '' } = useLoaderData<typeof loader>();
+  const { id = '' } = useParams();
   return (
     <div className={styles.contentContainer}>
       <Flex justify='end'>
@@ -50,8 +34,14 @@ const FileInputButton = () => {
     }
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const files = new FormData(e.currentTarget).getAll('filename'); // 이름이 filename 인 input 의 파일들
+    console.log({ files }); // TODO: 업로드 API 연결
+  };
+
   return (
-    <Form method='post' encType='multipart/form-data'>
+    <form onSubmit={handleSubmit}>
       <Button type='button' onClick={handleFileAddButtonClick}>
         <FaPlus />
         파일 추가
@@ -64,6 +54,6 @@ const FileInputButton = () => {
         style={{ display: 'none' }}
         onChange={handleFileChange}
       />
-    </Form>
+    </form>
   );
 };
