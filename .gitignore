@@ -8,5 +8,3 @@ node_modules
 
 # 개인 메모 (git 추적 제외)
 NOTES.local.md
-
-# React Router 생성 타입

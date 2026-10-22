@@ -3,8 +3,8 @@ import '@radix-ui/themes/styles.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router';
-
 import { AppRoutes } from '~/router';
+
 import '~/styles/font.css';
 import '~/styles/global.css';
 import { lightTheme } from '~/styles/themes.css';

@@ -7,4 +7,6 @@ export default defineConfig({
   // vite-tsconfig-paths 플러그인이 필요하지 않다.
   resolve: { tsconfigPaths: true },
   plugins: [react(), vanillaExtractPlugin()],
+  // .gitignore·.prettierignore 가 이미 build/ 를 제외하고 있어 Vite 기본값(dist/) 대신 맞춘다.
+  build: { outDir: 'build' },
 });
