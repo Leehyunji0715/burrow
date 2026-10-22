@@ -1,25 +1,21 @@
 import { Flex } from '@radix-ui/themes';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
-import type { LoaderFunctionArgs } from 'react-router';
-import { useLoaderData } from 'react-router';
-import { ClientOnly } from 'remix-utils/client-only';
+import { useParams } from 'react-router';
 import { Button } from '~/components';
-import { fetchAllDashboardItems } from '~/model/dashboard';
+import { DashboardItem, fetchAllDashboardItems } from '~/model/dashboard';
 
 import { DashboardCard } from '~/components/app/DashboardCard';
 import { EditableDashboardCard } from '~/components/app/DashboardCard/EditableDashboardCard';
 
 import * as styles from '~/styles/app.teams.css';
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const dashboardItems = await fetchAllDashboardItems();
-  return { id: params.id, dashboardItems };
-};
-
 export default function DashboardContent() {
-  const { id, dashboardItems } = useLoaderData<typeof loader>();
+  // TODO: TanStack Query 도입 시 useQuery 로 교체
+  const [dashboardItems, setDashboardItems] = useState<DashboardItem[]>([]);
   const [addNew, setAddNew] = useState(false);
+  const { id = '' } = useParams();
+
   // 다른 팀으로 이동하면 작성 중이던 카드를 닫는다.
   //
   // effect 에서 setState 하지 않는 이유: id 변경 -> 렌더 -> effect -> setState
@@ -32,17 +28,19 @@ export default function DashboardContent() {
     setAddNew(false);
   }
 
+  useEffect(() => {
+    fetchAllDashboardItems()
+      .then(setDashboardItems) // 데이터가 오면 state 에 넣음 → 다시 렌더
+      .catch((error) => console.error('대시보드 데이터 로드 실패:', error));
+  }, []);
+
   return (
     <div className={styles.contentContainer}>
       <ul className={styles.dashboardListContainer}>
         {addNew && (
-          <ClientOnly>
-            {() => (
-              <li key='__newDashboardCard' className={styles.dashboardListItem}>
-                <EditableDashboardCard />
-              </li>
-            )}
-          </ClientOnly>
+          <li key='__newDashboardCard' className={styles.dashboardListItem}>
+            <EditableDashboardCard />
+          </li>
         )}
         {dashboardItems.map((item) => (
           <li key={item.id} className={styles.dashboardListItem}>

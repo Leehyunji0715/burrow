@@ -1,7 +1,6 @@
 import { Flex } from '@radix-ui/themes';
 import { useEffect, useState } from 'react';
-import type { LoaderFunctionArgs } from 'react-router';
-import { Outlet, useLoaderData } from 'react-router';
+import { Outlet, useParams } from 'react-router';
 import { Separator } from '~/components';
 import { Team, sampleGetMyTeam } from '~/model/team';
 
@@ -9,12 +8,8 @@ import { TeamAvatar } from '~/components/app';
 
 import * as styles from '~/styles/app.teams.css';
 
-export const loader = ({ params }: LoaderFunctionArgs) => {
-  return { id: params.id };
-};
-
 export default function TeamsContent() {
-  const { id = '' } = useLoaderData<typeof loader>();
+  const { id = '' } = useParams();
   const [team, setTeam] = useState<Team>({ id: '', name: '' });
 
   useEffect(() => {
