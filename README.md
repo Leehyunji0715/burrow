@@ -7,13 +7,11 @@
 
 > 🚧 **개발 진행 중** (2026.10 ~ 2026.12) — 진행 상황은 아래 [로드맵](#로드맵)에서 확인할 수 있습니다.
 
-<!-- 디자인 시안 이미지를 추가하면 주석을 해제하세요
 <p align="center">
-  <img src=".github/assets/design-preview.png" alt="Team Rabbit 디자인 시안" width="800" />
+  <img src=".github/assets/landing-preview.png" alt="Burrow 랜딩 페이지 디자인 시안" width="800" />
   <br />
-  <sub>디자인 시안 — 실제 구현 화면이 아닙니다</sub>
+  <sub>랜딩 페이지 디자인 시안 — 실제 구현 화면이 아닙니다</sub>
 </p>
--->
 
 ## 배경
 
