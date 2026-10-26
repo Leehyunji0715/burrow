@@ -1,34 +1,36 @@
 import { Route, Routes } from 'react-router';
-import Home from '~/routes/_index';
-import AppLayout from '~/routes/app';
-import ChatLayout from '~/routes/app.chat';
-import ChatRoom from '~/routes/app.chat.$id';
-import ChatIndex from '~/routes/app.chat._index';
-import TeamsLayout from '~/routes/app.teams';
-import TeamDetail from '~/routes/app.teams.$id';
-import TeamDashboard from '~/routes/app.teams.$id.dashboard';
-import TeamFiles from '~/routes/app.teams.$id.files';
+import AppLayout, { AppIndex } from '~/routes/app-layout';
+import BoardPage from '~/routes/board';
+import ChannelPage from '~/routes/channel';
+import DmsLayout, { DmPage, DmsIndex } from '~/routes/dms';
+import FilesPage from '~/routes/files';
+import Landing from '~/routes/landing';
 import Login from '~/routes/login';
-import SignUp from '~/routes/signup';
+import NotFound from '~/routes/not-found';
+import ProjectLayout, { ProjectIndex } from '~/routes/project-layout';
+import Signup from '~/routes/signup';
 
+// URL 의 단어는 API 경로(/api/projects/:id/channels …)와 맞춘다.
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
+      <Route path='/' element={<Landing />} />
       <Route path='login' element={<Login />} />
-      <Route path='signup' element={<SignUp />} />
+      <Route path='signup' element={<Signup />} />
       <Route path='app' element={<AppLayout />}>
-        <Route path='chat' element={<ChatLayout />}>
-          <Route index element={<ChatIndex />} />
-          <Route path=':id' element={<ChatRoom />} />
+        <Route index element={<AppIndex />} />
+        <Route path='projects/:projectId' element={<ProjectLayout />}>
+          <Route index element={<ProjectIndex />} />
+          <Route path='channels/:channelId' element={<ChannelPage />} />
+          <Route path='board' element={<BoardPage />} />
+          <Route path='files' element={<FilesPage />} />
         </Route>
-        <Route path='teams' element={<TeamsLayout />}>
-          <Route path=':id' element={<TeamDetail />}>
-            <Route path='dashboard' element={<TeamDashboard />} />
-            <Route path='files' element={<TeamFiles />} />
-          </Route>
+        <Route path='dms' element={<DmsLayout />}>
+          <Route index element={<DmsIndex />} />
+          <Route path=':dmId' element={<DmPage />} />
         </Route>
       </Route>
+      <Route path='*' element={<NotFound />} />
     </Routes>
   );
 }
