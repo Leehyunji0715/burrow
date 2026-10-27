@@ -247,3 +247,16 @@ export const files: Record<string, ProjectFile[]> = {
 };
 
 export const userById = (id: string) => users.find((u) => u.id === id);
+
+/**
+ * 목업용 프로젝트 생성. 서버가 생기면 POST /api/projects 로 바뀐다.
+ * 서버 규칙(스펙)을 흉내 낸다: 만든 사람이 owner, #일반 채널이 함께 생긴다.
+ */
+export function createMockProject(name: string, color: Project['color']): Project {
+  const id = `p-${Date.now()}`;
+  const project: Project = { id, name, color, initial: name.trim().charAt(0), archived: false };
+  projects.push(project);
+  members[id] = [{ ...me, role: 'owner' }];
+  channels.push({ id: `c-${id}-general`, projectId: id, name: '일반', unread: 0 });
+  return project;
+}

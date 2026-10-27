@@ -10,6 +10,7 @@ import {
   SidebarSection,
 } from '~/components/layout/Sidebar';
 import * as shell from '~/components/layout/shell.css';
+import { ProjectMark } from '~/components/ui/ProjectMark';
 
 import { paths } from '~/constant/routes';
 
@@ -25,7 +26,11 @@ export default function ProjectLayout() {
   return (
     <div className={shell.content}>
       <Sidebar label={project.name}>
-        <SidebarHeader title={project.name} meta={`멤버 ${projectMembers.length}명`} />
+        <SidebarHeader
+          title={project.name}
+          meta={`멤버 ${projectMembers.length}명`}
+          icon={<ProjectMark project={project} />}
+        />
         <SidebarSection>
           <SidebarLink to={paths.board(project.id)} icon={<LuLayoutDashboard />}>
             대시보드

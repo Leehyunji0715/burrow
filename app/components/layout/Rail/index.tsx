@@ -1,7 +1,7 @@
 import { DropdownMenu, Tooltip } from 'radix-ui';
 import type { ReactNode } from 'react';
 import { LuLogOut, LuMessagesSquare, LuMonitor, LuMoon, LuPlus, LuSun } from 'react-icons/lu';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useMatch } from 'react-router';
 import type { Project, User } from '~/model';
 import { useTheme } from '~/theme/ThemeProvider';
 import type { ThemePreference } from '~/theme/theme';
@@ -56,26 +56,7 @@ export function Rail({ me, projects, dmUnread, onCreateProject, onLogout }: Prop
       <ul className={styles.tiles}>
         {projects.map((p) => (
           <li key={p.id}>
-            <Tooltip.Root>
-              <Tooltip.Trigger asChild>
-                <NavLink
-                  to={paths.project(p.id)}
-                  aria-label={p.name}
-                  className={({ isActive }) =>
-                    [styles.tile, styles.tileColor[p.color], isActive && styles.tileActive]
-                      .filter(Boolean)
-                      .join(' ')
-                  }
-                >
-                  {p.initial}
-                </NavLink>
-              </Tooltip.Trigger>
-              <Tooltip.Portal>
-                <Tooltip.Content side='right' sideOffset={10} className={styles.tooltip}>
-                  {p.name}
-                </Tooltip.Content>
-              </Tooltip.Portal>
-            </Tooltip.Root>
+            <ProjectTile project={p} />
           </li>
         ))}
         <li>
@@ -92,6 +73,36 @@ export function Rail({ me, projects, dmUnread, onCreateProject, onLogout }: Prop
 
       <ProfileMenu me={me} onLogout={onLogout} />
     </nav>
+  );
+}
+
+function ProjectTile({ project }: { project: Project }) {
+  const to = paths.project(project.id);
+  const active = useMatch(`${to}/*`) !== null;
+
+  // Tooltip.Trigger 의 asChild(Slot)는 자식의 className 을 문자열로 합친다.
+  // NavLink 처럼 className 에 함수를 넘기면 함수가 문자열이 되어 클래스가 통째로 깨지므로,
+  // 활성 여부를 직접 계산해 문자열로 넘긴다.
+  return (
+    <Tooltip.Root>
+      <Tooltip.Trigger asChild>
+        <Link
+          to={to}
+          aria-label={project.name}
+          aria-current={active ? 'page' : undefined}
+          className={[styles.tile, styles.tileColor[project.color], active && styles.tileActive]
+            .filter(Boolean)
+            .join(' ')}
+        >
+          {project.initial}
+        </Link>
+      </Tooltip.Trigger>
+      <Tooltip.Portal>
+        <Tooltip.Content side='right' sideOffset={10} className={styles.tooltip}>
+          {project.name}
+        </Tooltip.Content>
+      </Tooltip.Portal>
+    </Tooltip.Root>
   );
 }
 

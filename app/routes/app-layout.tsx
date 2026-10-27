@@ -1,12 +1,10 @@
-import { type FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { Navigate, Outlet, useNavigate } from 'react-router';
-import { channels, directChats, me, projects } from '~/mocks/data';
+import { channels, createMockProject, directChats, me, projects } from '~/mocks/data';
 
 import { Rail } from '~/components/layout/Rail';
 import * as shell from '~/components/layout/shell.css';
-import { Button } from '~/components/ui/Button';
-import { Dialog } from '~/components/ui/Dialog';
-import { TextField } from '~/components/ui/TextField';
+import { CreateProjectDialog } from '~/components/project/CreateProjectDialog';
 
 import { paths } from '~/constant/routes';
 
@@ -15,12 +13,6 @@ export default function AppLayout() {
   const [creating, setCreating] = useState(false);
   const activeProjects = projects.filter((p) => !p.archived);
   const dmUnread = directChats.reduce((sum, d) => sum + d.unread, 0);
-
-  const handleCreate = (e: FormEvent) => {
-    e.preventDefault();
-    // 목업: 프로젝트 생성 API 가 생기면 만든 프로젝트로 이동한다
-    setCreating(false);
-  };
 
   return (
     <div className={shell.app}>
@@ -33,22 +25,17 @@ export default function AppLayout() {
       />
       <Outlet />
 
-      <Dialog
+      <CreateProjectDialog
         open={creating}
         onOpenChange={setCreating}
-        title='새 프로젝트'
-        description='프로젝트를 만들면 #일반 채널이 함께 생겨요. 멤버는 만든 뒤에 초대할 수 있어요.'
-      >
-        <form className={shell.dialogForm} onSubmit={handleCreate}>
-          <TextField label='프로젝트 이름' name='name' placeholder='예: 로그인 · 회원가입 개편' />
-          <div className={shell.dialogActions}>
-            <Button variant='ghost' onClick={() => setCreating(false)}>
-              취소
-            </Button>
-            <Button type='submit'>만들기</Button>
-          </div>
-        </form>
-      </Dialog>
+        takenColors={activeProjects.map((p) => p.color)}
+        onCreate={(name, color) => {
+          // 목업: 프로젝트 생성 API 가 생기면 응답으로 받은 프로젝트로 이동한다
+          const project = createMockProject(name, color);
+          setCreating(false);
+          void navigate(paths.project(project.id));
+        }}
+      />
     </div>
   );
 }
