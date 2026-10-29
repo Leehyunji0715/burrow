@@ -41,6 +41,8 @@ Teams로 사람을 초대해 방을 만들어 쓰면서 반복해서 겪은 불�
 
 > 서버 연결 전이라 목업 데이터로 동작합니다. 화면 컴포넌트는 데이터를 props 로만 받아, 서버가 생기면 데이터를 넣는 자리만 바뀝니다.
 
+디자인 시안과 구현 화면을 나란히 비교한 캔버스: **[Burrow 디자인 캔버스 →](https://claude.ai/artifact/N1Rxc25kRo9SFBr4AdcP8E)**
+
 <table>
   <tr>
     <td width="50%"><img src=".github/assets/chat-light.png" alt="프로젝트 채널 채팅" /></td>
