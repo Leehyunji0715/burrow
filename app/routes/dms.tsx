@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { LuMessagesSquare } from 'react-icons/lu';
 import { Navigate, Outlet, useParams } from 'react-router';
 import { directChats, directMessages, me, userById } from '~/mocks/data';
-import type { DirectChat, Message } from '~/model';
+import type { Message, User } from '~/model';
 
 import { ChatView } from '~/components/chat/ChatView';
 import {
@@ -53,12 +53,17 @@ export function DmPage() {
   const { dmId = '' } = useParams();
   const chat = directChats.find((d) => d.id === dmId);
   if (!chat) return <p className={shell.empty}>대화를 찾을 수 없어요</p>;
-  return <DmChat key={chat.id} chat={chat} />;
+  return <DirectChatPane key={chat.partner.id} partner={chat.partner} />;
 }
 
-function DmChat({ chat }: { chat: DirectChat }) {
-  const [list, setList] = useState<Message[]>(directMessages[chat.id] ?? []);
-  const { partner } = chat;
+/**
+ * 한 사람과의 1:1 대화. 개인챗 화면과, 프로젝트 화면에서 멤버를 눌렀을 때 같이 쓴다.
+ * 1:1 방은 사람 기준으로 하나라 어디서 열든 같은 대화다 (프로젝트별 DM 은 만들지 않는다).
+ */
+export function DirectChatPane({ partner }: { partner: User }) {
+  const chat = directChats.find((d) => d.partner.id === partner.id);
+  // 아직 대화한 적 없는 사람은 빈 대화로 연다. 서버에서는 첫 메시지를 보낼 때 방이 생긴다
+  const [list, setList] = useState<Message[]>(chat ? (directMessages[chat.id] ?? []) : []);
 
   // 목업: 화면에만 붙인다
   const handleSend = (text: string) =>
@@ -73,18 +78,22 @@ function DmChat({ chat }: { chat: DirectChat }) {
       },
     ]);
 
+  const isMe = partner.id === me.id;
+
   return (
     <ChatView
-      title={partner.name}
+      title={isMe ? `${partner.name} (나)` : partner.name}
       subtitle={
-        partner.statusNote
-          ? `${presenceLabel[partner.presence]} · ${partner.statusNote}`
-          : presenceLabel[partner.presence]
+        isMe
+          ? '나만 보는 대화예요. 메모나 링크를 남겨 두세요'
+          : partner.statusNote
+            ? `${presenceLabel[partner.presence]} · ${partner.statusNote}`
+            : presenceLabel[partner.presence]
       }
       messages={list}
       meId={me.id}
       findUser={userById}
-      composerPlaceholder={`${partner.name} 님에게 메시지 보내기`}
+      composerPlaceholder={isMe ? '나에게 메모 남기기' : `${partner.name} 님에게 메시지 보내기`}
       onSend={handleSend}
     />
   );
