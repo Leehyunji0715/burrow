@@ -8,9 +8,7 @@
 > 🚧 **개발 진행 중** (2026.10 ~ 2026.12) — 진행 상황은 아래 [로드맵](#로드맵)에서 확인할 수 있습니다.
 
 <p align="center">
-  <img src=".github/assets/landing-preview.png" alt="Burrow 랜딩 페이지 디자인 시안" width="800" />
-  <br />
-  <sub>랜딩 페이지 디자인 시안 — 실제 구현 화면이 아닙니다</sub>
+  <img src=".github/assets/landing-hero.png" alt="Burrow 랜딩 페이지" width="800" />
 </p>
 
 ## 배경
@@ -38,6 +36,29 @@ Teams로 사람을 초대해 방을 만들어 쓰면서 반복해서 겪은 불�
 - **개인챗은 전역 1:1** 이며, 프로젝트와 다른 급으로 구분해 표시합니다
 - 끝난 프로젝트는 **보관**합니다. 보관해도 대화와 파일은 남습니다
 - 권한은 owner / member 두 가지로 단순하게 유지합니다
+
+## 화면
+
+> 서버 연결 전이라 목업 데이터로 동작합니다. 화면 컴포넌트는 데이터를 props 로만 받아, 서버가 생기면 데이터를 넣는 자리만 바뀝니다.
+
+<table>
+  <tr>
+    <td width="50%"><img src=".github/assets/chat-light.png" alt="프로젝트 채널 채팅" /></td>
+    <td width="50%"><img src=".github/assets/board.png" alt="프로젝트 대시보드" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>채널 채팅 — 레일의 프로젝트 타일 · 안 읽은 메시지 구분선</sub></td>
+    <td align="center"><sub>대시보드 — 확인 안 한 공지 · 접속 상태</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src=".github/assets/files.png" alt="프로젝트 파일" /></td>
+    <td width="50%"><img src=".github/assets/chat-dark.png" alt="다크 모드" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>파일 — 프로젝트 단위로 모아 보기</sub></td>
+    <td align="center"><sub>다크 모드 — 라이트 / 다크 / 시스템 설정</sub></td>
+  </tr>
+</table>
 
 ## 주요 기능 (MVP)
 
@@ -67,7 +88,7 @@ Teams로 사람을 초대해 방을 만들어 쓰면서 반복해서 겪은 불�
 그 밖의 진행 상황
 
 - [x] React Router framework mode → SPA 전환
-- [ ] 디자인 시스템 토큰 적용
+- [x] 디자인 시스템 적용 · 화면 구성 (테마 전환, 목업 데이터)
 - [ ] DB 스키마 · 인증
 - [ ] 백엔드 서버 (Fastify + `ws`)
 
