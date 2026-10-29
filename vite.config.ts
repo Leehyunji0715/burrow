@@ -9,4 +9,12 @@ export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
   // .gitignore·.prettierignore 가 이미 build/ 를 제외하고 있어 Vite 기본값(dist/) 대신 맞춘다.
   build: { outDir: 'build' },
+  server: {
+    // 브라우저는 5173 한 곳에만 요청하고, Vite 가 /api·/ws 를 API 서버(4000)로 넘긴다.
+    // 화면과 API 가 같은 origin 이 되어 CORS 설정이 필요 없고, 세션 쿠키도 그대로 붙는다.
+    proxy: {
+      '/api': 'http://localhost:4000',
+      '/ws': { target: 'ws://localhost:4000', ws: true },
+    },
+  },
 });

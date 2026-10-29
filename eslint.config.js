@@ -96,6 +96,13 @@ export default tseslint.config(
     languageOptions: { globals: { ...globals.node } },
   },
 
+  // ── 5-1. 서버 (Node 프로세스) ───────────────────────────────────────
+  // 브라우저 전역(window·document) 대신 Node 전역(process 등)을 쓴다.
+  {
+    files: ['server/**/*.ts'],
+    languageOptions: { globals: { ...globals.node } },
+  },
+
   // ── 6. 테스트 파일 ──────────────────────────────────────────────────
   {
     files: ['**/*.test.{ts,tsx}'],
