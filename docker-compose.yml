@@ -1,0 +1,22 @@
+# 로컬 개발용 인프라. 앱(Vite·서버)은 호스트에서 돌리고, DB 같은 상태 있는 서비스만 컨테이너로 띄운다.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: burrow
+      POSTGRES_PASSWORD: burrow
+      POSTGRES_DB: burrow
+    ports:
+      # 호스트 5432 는 다른 로컬 Postgres 가 흔히 쓰므로 비켜 둔다 (컨테이너 안은 5432 그대로)
+      - '5433:5432'
+    volumes:
+      # 컨테이너를 지워도 데이터가 남도록 이름 있는 볼륨에 둔다 (초기화: docker compose down -v)
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U burrow -d burrow']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  db-data:
