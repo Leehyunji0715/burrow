@@ -13,11 +13,11 @@ export default function Login() {
     <AuthLayout
       brand={
         <>
-          <h2 className={layout.brandTitle}>
+          <p className={layout.brandTitle}>
             다시 오신 걸
             <br />
             환영해요.
-          </h2>
+          </p>
           <p className={layout.brandText}>프로젝트마다 이어지던 대화가 그대로 기다리고 있어요.</p>
         </>
       }

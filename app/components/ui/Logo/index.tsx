@@ -20,7 +20,12 @@ export function Logo({ size = 36, withWordmark = false }: Props) {
         <path d={BODY} className={styles.body} />
         <path d={LINE} className={styles.line} />
       </svg>
-      {withWordmark && <span className={styles.wordmark}>Burrow</span>}
+      {/* 브랜드명은 브라우저 번역에서 "굴"로 바뀌지 않게 한다 */}
+      {withWordmark && (
+        <span className={styles.wordmark} translate='no'>
+          Burrow
+        </span>
+      )}
     </span>
   );
 }

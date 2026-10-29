@@ -28,6 +28,20 @@ globalStyle('body', {
   wordBreak: 'keep-all',
   overflowWrap: 'anywhere',
   WebkitFontSmoothing: 'antialiased',
+  // 모바일: 더블탭 확대 대기를 없애 탭이 바로 반응하게 하고, 탭할 때 뜨는 기본 회색 상자를 끈다
+  touchAction: 'manipulation',
+  WebkitTapHighlightColor: 'transparent',
+});
+
+// 움직임 줄이기 설정을 켠 사용자에게는 전환·애니메이션을 사실상 끈다
+globalStyle('*, *::before, *::after', {
+  '@media': {
+    '(prefers-reduced-motion: reduce)': {
+      transitionDuration: '0.01ms !important',
+      animationDuration: '0.01ms !important',
+      animationIterationCount: '1 !important',
+    },
+  },
 });
 
 globalStyle('h1, h2, h3, h4, p, ul, ol, figure', {

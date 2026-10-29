@@ -1,5 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
+import { mobile } from '~/styles/media';
 import { vars } from '~/styles/tokens.css';
 
 export const page = style({
@@ -11,6 +12,7 @@ export const page = style({
   padding: `${vars.space8} ${vars.space8} ${vars.space10}`,
   background: vars.bg,
   minHeight: '100vh',
+  '@media': { [mobile]: { padding: vars.space4, minHeight: 0 } },
 });
 
 export const summary = style({
@@ -45,6 +47,14 @@ export const columns = style({
   alignItems: 'start',
   gap: vars.space6,
   '@media': { 'screen and (max-width: 1100px)': { gridTemplateColumns: 'minmax(0, 1fr)' } },
+});
+
+export const empty = style({
+  padding: vars.space10,
+  border: `1.5px dashed ${vars.lineDashed}`,
+  borderRadius: vars.radiusXl,
+  textAlign: 'center',
+  color: vars.inkMuted,
 });
 
 export const posts = style({ display: 'flex', flexDirection: 'column', gap: vars.space4 });

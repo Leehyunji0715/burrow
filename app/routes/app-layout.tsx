@@ -16,6 +16,10 @@ export default function AppLayout() {
 
   return (
     <div className={shell.app}>
+      {/* 키보드 사용자가 매번 레일 전체를 지나가지 않도록. Tab 을 처음 누르면 보인다 */}
+      <a href='#main' className={shell.skipLink}>
+        본문으로 건너뛰기
+      </a>
       <Rail
         me={me}
         projects={activeProjects}
@@ -23,7 +27,10 @@ export default function AppLayout() {
         onCreateProject={() => setCreating(true)}
         onLogout={() => void navigate(paths.login)}
       />
-      <Outlet />
+      {/* tabIndex -1: 건너뛰기 링크로 왔을 때 포커스가 실제로 본문으로 옮겨지게 한다 */}
+      <main id='main' tabIndex={-1} className={shell.main}>
+        <Outlet />
+      </main>
 
       <CreateProjectDialog
         open={creating}

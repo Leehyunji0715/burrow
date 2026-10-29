@@ -74,6 +74,10 @@ export function SignupForm({
         ref={loginIdRef}
         label='아이디'
         name='loginId'
+        // 아이디는 영문 소문자라 모바일 자동 대문자·맞춤법 검사가 방해만 된다
+        autoCapitalize='none'
+        autoCorrect='off'
+        spellCheck={false}
         autoComplete='username'
         placeholder='영문 소문자로 시작, 4~20자'
         error={

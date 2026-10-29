@@ -54,7 +54,11 @@ export function ChatView({
       </header>
 
       <div className={styles.scroller}>
-        <ol className={styles.list} aria-label='메시지'>
+        {rows.length === 0 && (
+          <p className={styles.empty}>아직 메시지가 없어요. 첫 메시지를 보내 보세요.</p>
+        )}
+        {/* role=log: 새로 붙는 메시지를 스크린 리더가 읽어 준다 (기존 메시지는 다시 읽지 않는다) */}
+        <ol className={styles.list} role='log' aria-label='메시지'>
           {rows.map((row) => {
             if (row.kind === 'date') {
               return (
@@ -107,7 +111,9 @@ export function ChatView({
                         <LuFileText />
                       </span>
                       <span className={styles.fileText}>
-                        <span className={styles.fileName}>{message.attachment.name}</span>
+                        <span className={styles.fileName} title={message.attachment.name}>
+                          {message.attachment.name}
+                        </span>
                         <span className={styles.fileSize}>{message.attachment.size}</span>
                       </span>
                       <IconButton label={`${message.attachment.name} 다운로드`}>
@@ -165,6 +171,7 @@ function Composer({
         </IconButton>
         <input
           aria-label='메시지'
+          autoComplete='off'
           className={styles.composerInput}
           value={draft}
           onChange={(e) => setDraft(e.target.value)}

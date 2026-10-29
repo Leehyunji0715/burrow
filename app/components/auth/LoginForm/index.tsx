@@ -45,6 +45,10 @@ export function LoginForm({ onSubmit, error, defaultLoginId, pending = false }: 
       <TextField
         label='아이디'
         name='loginId'
+        // 아이디는 영문 소문자라 모바일 자동 대문자·맞춤법 검사가 방해만 된다
+        autoCapitalize='none'
+        autoCorrect='off'
+        spellCheck={false}
         autoComplete='username'
         placeholder='아이디를 입력하세요'
         defaultValue={defaultLoginId}

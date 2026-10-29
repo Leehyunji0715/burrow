@@ -23,6 +23,8 @@ const base = style({
 export const variant = styleVariants({
   primary: [base, { background: vars.accent, color: vars.onAccent }],
   brand: [base, { background: vars.brand, color: vars.onBrand }],
+  // 되돌릴 수 없는 동작(삭제)에만. 글자는 바탕색 토큰이라 두 테마 모두 대비가 유지된다
+  danger: [base, { background: vars.dangerStrong, color: vars.bgRaised }],
   outline: [
     base,
     {

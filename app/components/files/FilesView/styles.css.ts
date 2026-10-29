@@ -1,5 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
+import { mobile } from '~/styles/media';
 import { vars } from '~/styles/tokens.css';
 
 export const page = style({
@@ -11,6 +12,7 @@ export const page = style({
   gap: vars.space5,
   padding: `${vars.space8} ${vars.space8} ${vars.space10}`,
   background: vars.bg,
+  '@media': { [mobile]: { padding: vars.space4, minHeight: 0 } },
 });
 
 export const toolbar = style({
@@ -36,6 +38,15 @@ export const filter = style({
   background: vars.bgRaised,
   color: vars.inkSecondary,
   fontWeight: 500,
+  selectors: {
+    '&:hover': { borderColor: vars.lineStrong, background: vars.brandFaint, color: vars.ink },
+  },
+});
+
+export const confirmActions = style({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  gap: vars.space2,
 });
 
 // 선택된 필터 칩은 night (디자인 시스템: 어두운 강조 면)
@@ -98,6 +109,7 @@ export const dropzone = style({
 export const dropIcon = style({ fontSize: '22px', color: vars.brand });
 
 export const tableWrap = style({
+  containerType: 'inline-size',
   overflowX: 'auto',
   border: `1px solid ${vars.line}`,
   borderRadius: vars.radiusXl,
@@ -118,13 +130,34 @@ globalStyle(`${table} th`, {
 
 globalStyle(`${table} td`, {
   padding: '8px 16px',
+  // 전역의 overflow-wrap: anywhere 때문에 좁은 칸에서 글자가 세로로 쌓이지 않게 한 줄로 둔다
+  whiteSpace: 'nowrap',
   borderBottom: `1px solid ${vars.line}`,
   color: vars.inkSecondary,
 });
 
 globalStyle(`${table} tbody tr:last-child td`, { borderBottom: 0 });
 
-export const nameCell = style({ display: 'flex', alignItems: 'center', gap: vars.space3 });
+// 이름 칸이 남는 폭을 모두 차지하고, 넘치면 말줄임으로 자른다 (max-width: 0 은 표 칸에서 말줄임을 켜는 관용구)
+export const nameTd = style({
+  width: '100%',
+  maxWidth: 0,
+  // 다른 칸에 밀려 이름이 한두 글자만 남지 않게 최소 폭을 둔다 (부족하면 표가 가로로 스크롤된다)
+  minWidth: '160px',
+});
+
+// 표가 놓인 자리가 좁으면 이름·크기·작업만 남긴다. 올린 사람과 날짜는 덜 급한 정보다.
+// 화면 너비가 아니라 표 자리의 너비를 본다 (container query) — 사이드바를 넓히면 데스크톱에서도 좁아지기 때문이다
+export const optionalCol = style({
+  '@container': { '(max-width: 640px)': { display: 'none' } },
+});
+
+export const nameCell = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: vars.space3,
+  minWidth: 0,
+});
 
 export const ext = style({
   flex: 'none',
@@ -140,7 +173,13 @@ export const ext = style({
   fontWeight: 800,
 });
 
-export const fileName = style({ fontWeight: 600, color: vars.ink });
+export const fileName = style({
+  minWidth: 0,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  fontWeight: 600,
+  color: vars.ink,
+});
 
 export const num = style({ fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' });
 
