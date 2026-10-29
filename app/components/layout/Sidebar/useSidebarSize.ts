@@ -7,6 +7,8 @@ import {
   useSyncExternalStore,
 } from 'react';
 
+import { mobileQuery } from '~/styles/media';
+
 export const SIDEBAR_MIN = 220;
 export const SIDEBAR_MAX = 420;
 const SIDEBAR_DEFAULT = 260;
@@ -14,10 +16,6 @@ const SIDEBAR_DEFAULT = 260;
 const COLLAPSE_BELOW = SIDEBAR_MIN - 60;
 const KEY_STEP = 16;
 const STORAGE_KEY = 'burrow-sidebar';
-
-// 이 너비보다 좁으면 사이드바가 본문을 밀어내지 않고 위에 덮이는 방식(overlay)으로 바뀐다.
-// styles.css.ts 의 미디어 쿼리와 같은 값이어야 한다.
-export const MOBILE_QUERY = '(max-width: 899px)';
 
 type SidebarState = { width: number; collapsed: boolean };
 
@@ -38,11 +36,11 @@ function readSaved(): SidebarState {
 }
 
 function subscribeMobile(onChange: () => void) {
-  const media = matchMedia(MOBILE_QUERY);
+  const media = matchMedia(mobileQuery);
   media.addEventListener('change', onChange);
   return () => media.removeEventListener('change', onChange);
 }
-const getMobile = () => matchMedia(MOBILE_QUERY).matches;
+const getMobile = () => matchMedia(mobileQuery).matches;
 
 /**
  * 사이드바 너비·접힘 상태. 끌기·키보드로 조절하고, 넓은 화면에서 정한 값은 기억해 둔다.

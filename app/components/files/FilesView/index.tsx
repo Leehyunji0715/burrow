@@ -87,8 +87,12 @@ export function FilesView({ projectName, files, findUser, onUpload, onDelete }: 
             <tr>
               <th scope='col'>이름</th>
               <th scope='col'>크기</th>
-              <th scope='col'>올린 사람</th>
-              <th scope='col'>날짜</th>
+              <th scope='col' className={styles.optionalCol}>
+                올린 사람
+              </th>
+              <th scope='col' className={styles.optionalCol}>
+                날짜
+              </th>
               <th scope='col'>
                 <span className={styles.srOnly}>작업</span>
               </th>
@@ -107,8 +111,10 @@ export function FilesView({ projectName, files, findUser, onUpload, onDelete }: 
                   </span>
                 </td>
                 <td className={styles.num}>{f.size}</td>
-                <td>{findUser(f.uploaderId)?.name}</td>
-                <td className={styles.num}>{dateLabel(f.createdAt)}</td>
+                <td className={styles.optionalCol}>{findUser(f.uploaderId)?.name}</td>
+                <td className={[styles.num, styles.optionalCol].join(' ')}>
+                  {dateLabel(f.createdAt)}
+                </td>
                 <td>
                   <span className={styles.rowActions}>
                     <IconButton label={`${f.name} 다운로드`}>

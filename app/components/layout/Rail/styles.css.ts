@@ -1,5 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
+import { bottomNavHeight, mobile, safeBottom } from '~/styles/media';
 import { projectPalette, vars } from '~/styles/tokens.css';
 import { displayFace } from '~/styles/typography.css';
 
@@ -16,6 +17,22 @@ export const rail = style({
   padding: '18px 0',
   background: vars.bgSubtle,
   borderRight: `1px solid ${vars.lineRail}`,
+  '@media': {
+    // 좁은 화면: 맨 아래 탭 바. 프로젝트가 많으면 가로로 스크롤한다
+    [mobile]: {
+      position: 'relative',
+      width: '100%',
+      height: `calc(${bottomNavHeight} + ${safeBottom})`,
+      flexDirection: 'row',
+      gap: vars.space2,
+      padding: `0 0 ${safeBottom} ${vars.space3}`,
+      overflowX: 'auto',
+      overflowY: 'hidden',
+      borderRight: 0,
+      borderTop: `1px solid ${vars.lineRail}`,
+      scrollbarWidth: 'none',
+    },
+  },
 });
 
 export const home = style({
@@ -25,6 +42,8 @@ export const home = style({
   alignItems: 'center',
   justifyContent: 'center',
   marginBottom: vars.space3,
+  // 탭 바는 이동하는 곳만 두는 자리라 로고는 뺀다
+  '@media': { [mobile]: { display: 'none' } },
 });
 
 export const menu = style({
@@ -39,6 +58,7 @@ export const menu = style({
   fontSize: '11px',
   fontWeight: 600,
   selectors: { '&:hover': { color: vars.ink } },
+  '@media': { [mobile]: { flex: 'none', width: '56px', padding: '6px 0' } },
 });
 
 export const menuActive = style({ background: vars.brandSoft, color: vars.brandText });
@@ -68,9 +88,15 @@ export const divider = style({
   height: '1px',
   margin: '8px 0 4px',
   background: vars.lineStrong,
+  '@media': { [mobile]: { flex: 'none', width: '1px', height: '32px', margin: '0 4px' } },
 });
 
-export const groupLabel = style({ fontSize: '11px', fontWeight: 700, color: vars.inkMuted });
+export const groupLabel = style({
+  fontSize: '11px',
+  fontWeight: 700,
+  color: vars.inkMuted,
+  '@media': { [mobile]: { display: 'none' } },
+});
 
 export const tiles = style({
   display: 'flex',
@@ -78,6 +104,7 @@ export const tiles = style({
   alignItems: 'center',
   gap: '10px',
   paddingTop: vars.space1,
+  '@media': { [mobile]: { flex: 'none', flexDirection: 'row', paddingTop: 0 } },
 });
 
 const tileBase = {
@@ -132,6 +159,21 @@ export const profile = style({
   borderRadius: vars.radiusFull,
   background: 'transparent',
   vars: { '--avatar-ring': vars.bgSubtle },
+  '@media': {
+    // 가로로 스크롤해도 내 프로필은 오른쪽 끝에 붙어 있게 한다
+    [mobile]: {
+      position: 'sticky',
+      right: 0,
+      flex: 'none',
+      marginTop: 0,
+      marginLeft: 'auto',
+      padding: `0 ${vars.space3}`,
+      height: '100%',
+      borderRadius: 0,
+      background: vars.bgSubtle,
+      boxShadow: `-8px 0 12px -8px rgba(18, 16, 34, 0.25)`,
+    },
+  },
 });
 
 // ── 프로필 메뉴 ────────────────────────────────────────────

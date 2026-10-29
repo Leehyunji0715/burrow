@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
+import { mobile } from '~/styles/media';
 import { vars } from '~/styles/tokens.css';
 
 export const root = style({
@@ -9,12 +10,14 @@ export const root = style({
   display: 'flex',
   flexDirection: 'column',
   background: vars.bgRaised,
+  // 좁은 화면에서는 상단 바와 하단 탭 바를 뺀 나머지를 채운다
+  '@media': { [mobile]: { height: 'auto', minHeight: 0 } },
 });
 
 export const header = style({
   minHeight: '68px',
   padding: `12px ${vars.space6}`,
-  '@media': { 'screen and (max-width: 899px)': { padding: `10px ${vars.space4}` } },
+  '@media': { [mobile]: { padding: `10px ${vars.space4}` } },
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
@@ -38,7 +41,7 @@ export const list = style({
   flexDirection: 'column',
   gap: '18px',
   padding: `${vars.space5} ${vars.space6}`,
-  '@media': { 'screen and (max-width: 899px)': { padding: vars.space4 } },
+  '@media': { [mobile]: { padding: vars.space4 } },
 });
 
 const line = {
@@ -171,7 +174,7 @@ export const imageCard = style({
 
 export const composerForm = style({
   padding: `14px ${vars.space6} ${vars.space5}`,
-  '@media': { 'screen and (max-width: 899px)': { padding: `10px ${vars.space3}` } },
+  '@media': { [mobile]: { padding: `10px ${vars.space3}` } },
   borderTop: `1px solid ${vars.line}`,
 });
 

@@ -1,5 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
+import { mobile } from '~/styles/media';
 import { vars } from '~/styles/tokens.css';
 
 export const page = style({
@@ -11,7 +12,7 @@ export const page = style({
   padding: `${vars.space8} ${vars.space8} ${vars.space10}`,
   background: vars.bg,
   minHeight: '100vh',
-  '@media': { 'screen and (max-width: 899px)': { padding: vars.space4 } },
+  '@media': { [mobile]: { padding: vars.space4, minHeight: 0 } },
 });
 
 export const summary = style({

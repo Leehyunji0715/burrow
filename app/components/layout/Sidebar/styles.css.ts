@@ -1,9 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { bottomNavHeight, mobile, safeBottom } from '~/styles/media';
 import { vars } from '~/styles/tokens.css';
-
-// MOBILE_QUERY(useSidebarSize.ts)와 같은 경계. 이보다 좁으면 사이드바가 본문 위에 덮인다
-const mobile = 'screen and (max-width: 899px)';
 
 export const sidebar = style({
   flex: 'none',
@@ -17,11 +15,14 @@ export const sidebar = style({
   borderRight: `1px solid ${vars.lineSidebar}`,
   vars: { '--avatar-ring': vars.brandSoft },
   '@media': {
+    // 좁은 화면: 왼쪽에서 나오는 덮개 목록. 하단 탭 바는 가리지 않는다
     [mobile]: {
       position: 'fixed',
-      left: vars.railWidth,
+      top: 0,
+      left: 0,
       zIndex: 30,
-      width: `min(300px, calc(100vw - ${vars.railWidth} - 16px))`,
+      width: 'min(320px, calc(100vw - 48px))',
+      height: `calc(100dvh - ${bottomNavHeight} - ${safeBottom})`,
       boxShadow: '0 12px 40px rgba(18, 16, 34, 0.24)',
     },
   },
@@ -73,17 +74,55 @@ export const collapsedStrip = style({
   height: '100vh',
   position: 'sticky',
   top: 0,
+  zIndex: 2,
   display: 'flex',
   justifyContent: 'center',
   paddingTop: vars.space4,
   background: vars.brandSoft,
   borderRight: `1px solid ${vars.lineSidebar}`,
+  '@media': {
+    // 좁은 화면: 본문 위쪽에 붙는 가로 바. 지금 어느 프로젝트인지 이름을 함께 보여준다
+    [mobile]: {
+      width: '100%',
+      height: 'auto',
+      justifyContent: 'flex-start',
+      padding: `${vars.space1} ${vars.space2}`,
+      borderRight: 0,
+      borderBottom: `1px solid ${vars.lineSidebar}`,
+    },
+  },
+});
+
+export const stripButton = style({
+  minWidth: vars.controlMd,
+  height: vars.controlMd,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: vars.space2,
+  padding: `0 ${vars.space2}`,
+  border: 0,
+  borderRadius: vars.radiusMd,
+  background: 'transparent',
+  color: vars.inkSecondary,
+  fontSize: '20px',
+  selectors: { '&:hover': { background: vars.brandTint, color: vars.ink } },
+});
+
+// 넓은 화면에서는 아이콘만, 좁은 화면에서는 이름도 보인다
+export const stripLabel = style({
+  display: 'none',
+  fontSize: '15px',
+  fontWeight: 700,
+  color: vars.ink,
+  '@media': { [mobile]: { display: 'inline' } },
 });
 
 export const backdrop = style({
   position: 'fixed',
   inset: 0,
   zIndex: 29,
+  '@media': { [mobile]: { bottom: `calc(${bottomNavHeight} + ${safeBottom})` } },
   border: 0,
   padding: 0,
   background: 'rgba(18, 16, 34, 0.35)',

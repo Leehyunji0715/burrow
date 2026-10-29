@@ -1,5 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
+import { mobile } from '~/styles/media';
 import { vars } from '~/styles/tokens.css';
 
 export const page = style({
@@ -11,7 +12,7 @@ export const page = style({
   gap: vars.space5,
   padding: `${vars.space8} ${vars.space8} ${vars.space10}`,
   background: vars.bg,
-  '@media': { 'screen and (max-width: 899px)': { padding: vars.space4 } },
+  '@media': { [mobile]: { padding: vars.space4, minHeight: 0 } },
 });
 
 export const toolbar = style({
@@ -128,7 +129,14 @@ globalStyle(`${table} td`, {
 globalStyle(`${table} tbody tr:last-child td`, { borderBottom: 0 });
 
 // 이름 칸이 남는 폭을 모두 차지하고, 넘치면 말줄임으로 자른다 (max-width: 0 은 표 칸에서 말줄임을 켜는 관용구)
-export const nameTd = style({ width: '100%', maxWidth: 0 });
+export const nameTd = style({
+  width: '100%',
+  maxWidth: 0,
+  '@media': { [mobile]: { minWidth: '140px' } },
+});
+
+// 좁은 화면에서는 이름·크기·작업만 남긴다. 올린 사람과 날짜는 덜 급한 정보다
+export const optionalCol = style({ '@media': { [mobile]: { display: 'none' } } });
 
 export const nameCell = style({
   display: 'flex',

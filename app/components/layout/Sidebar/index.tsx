@@ -26,9 +26,18 @@ export function Sidebar({ label, children }: { label: string; children: ReactNod
   if (collapsed) {
     return (
       <div className={styles.collapsedStrip}>
-        <IconButton label={`${label} 목록 펼치기`} onClick={expand}>
-          <LuPanelLeftOpen />
-        </IconButton>
+        <button
+          type='button'
+          className={styles.stripButton}
+          aria-label={`${label} 목록 펼치기`}
+          title={`${label} 목록 펼치기`}
+          onClick={expand}
+        >
+          <LuPanelLeftOpen aria-hidden='true' />
+          <span className={styles.stripLabel} aria-hidden='true'>
+            {label}
+          </span>
+        </button>
       </div>
     );
   }
