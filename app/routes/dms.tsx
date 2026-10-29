@@ -78,18 +78,22 @@ export function DirectChatPane({ partner }: { partner: User }) {
       },
     ]);
 
+  const isMe = partner.id === me.id;
+
   return (
     <ChatView
-      title={partner.name}
+      title={isMe ? `${partner.name} (나)` : partner.name}
       subtitle={
-        partner.statusNote
-          ? `${presenceLabel[partner.presence]} · ${partner.statusNote}`
-          : presenceLabel[partner.presence]
+        isMe
+          ? '나만 보는 대화예요. 메모나 링크를 남겨 두세요'
+          : partner.statusNote
+            ? `${presenceLabel[partner.presence]} · ${partner.statusNote}`
+            : presenceLabel[partner.presence]
       }
       messages={list}
       meId={me.id}
       findUser={userById}
-      composerPlaceholder={`${partner.name} 님에게 메시지 보내기`}
+      composerPlaceholder={isMe ? '나에게 메모 남기기' : `${partner.name} 님에게 메시지 보내기`}
       onSend={handleSend}
     />
   );

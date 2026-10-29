@@ -7,7 +7,6 @@ import {
   Sidebar,
   SidebarHeader,
   SidebarLink,
-  SidebarPerson,
   SidebarPersonLink,
   SidebarSection,
 } from '~/components/layout/Sidebar';
@@ -25,8 +24,8 @@ export default function ProjectLayout() {
 
   const projectChannels = channels.filter((c) => c.projectId === project.id);
   const projectMembers = members[project.id] ?? [];
-  // ?dm=<사람 id> 가 있으면 본문 자리에 그 사람과의 1:1 대화를 연다. 나 자신과는 열지 않는다
-  const dmPartner = projectMembers.find((m) => m.id === params.get('dm') && m.id !== me.id);
+  // ?dm=<사람 id> 가 있으면 본문 자리에 그 사람과의 1:1 대화를 연다. 나를 고르면 나와의 대화(메모)다
+  const dmPartner = projectMembers.find((m) => m.id === params.get('dm'));
   // 1:1 을 덮어 연 동안에는 주소가 채널이어도 채널 선택 표시를 끈다
   const pageActive = dmPartner ? false : undefined;
 
@@ -64,13 +63,14 @@ export default function ProjectLayout() {
           ))}
         </SidebarSection>
         <SidebarSection title='멤버'>
-          {projectMembers.map((m) =>
-            m.id === me.id ? (
-              <SidebarPerson key={m.id} user={m} sub='나' />
-            ) : (
-              <SidebarPersonLink key={m.id} user={m} active={m.id === dmPartner?.id} />
-            ),
-          )}
+          {projectMembers.map((m) => (
+            <SidebarPersonLink
+              key={m.id}
+              user={m}
+              isMe={m.id === me.id}
+              active={m.id === dmPartner?.id}
+            />
+          ))}
         </SidebarSection>
       </Sidebar>
       {dmPartner ? <DirectChatPane key={dmPartner.id} partner={dmPartner} /> : <Outlet />}

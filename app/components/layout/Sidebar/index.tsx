@@ -170,18 +170,26 @@ export function SidebarPerson({ user, sub }: { user: User; sub?: string }) {
  * 누르면 그 사람과의 1:1 대화를 본문에 연다. 경로는 그대로 두고 ?dm= 만 바꾼다 —
  * 새로고침·뒤로 가기·링크 공유가 동작하고, 채널을 누르면 ?dm 이 빠지며 채널로 돌아간다.
  */
-export function SidebarPersonLink({ user, active }: { user: User; active: boolean }) {
+export function SidebarPersonLink({
+  user,
+  active,
+  isMe = false,
+}: {
+  user: User;
+  active: boolean;
+  isMe?: boolean;
+}) {
   return (
     <li>
       <Link
         to={{ search: `?dm=${user.id}` }}
         aria-current={active ? 'true' : undefined}
-        aria-label={`${user.name} 님과 1:1 대화`}
+        aria-label={isMe ? '나와의 대화 (메모)' : `${user.name} 님과 1:1 대화`}
         className={[styles.item, styles.personLink, active && styles.itemActive]
           .filter(Boolean)
           .join(' ')}
       >
-        <PersonRow user={user} />
+        <PersonRow user={user} sub={isMe ? '나' : undefined} />
       </Link>
     </li>
   );
