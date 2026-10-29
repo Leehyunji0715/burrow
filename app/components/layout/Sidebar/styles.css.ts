@@ -232,6 +232,9 @@ export const personSub = style({
   whiteSpace: 'nowrap',
 });
 
+// 멤버 행은 아바타가 있어 채널 행보다 높다
+export const personLink = style({ minHeight: '48px' });
+
 export const memberRow = style({
   minHeight: '48px',
   padding: '4px 10px',
