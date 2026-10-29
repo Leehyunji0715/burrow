@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 import { vars } from '~/styles/tokens.css';
+import { displayFace } from '~/styles/typography.css';
 
 export const page = style({
   minHeight: '100vh',
@@ -70,10 +71,9 @@ export const formArea = style({
 });
 
 export const brandTitle = style({
+  ...displayFace,
   fontSize: '40px',
   lineHeight: 1.3,
-  fontWeight: 800,
-  letterSpacing: '-0.02em',
 });
 
 export const brandText = style({ fontSize: '17px', lineHeight: 1.7 });
@@ -111,7 +111,7 @@ export const form = style({
 
 export const formHead = style({ display: 'flex', flexDirection: 'column', gap: vars.space2 });
 
-export const formTitle = style({ fontSize: '32px', fontWeight: 800, letterSpacing: '-0.02em' });
+export const formTitle = style({ ...displayFace, fontSize: '32px' });
 
 export const formSub = style({ fontSize: '15px', color: vars.inkMuted });
 

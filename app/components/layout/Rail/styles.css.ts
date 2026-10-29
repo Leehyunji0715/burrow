@@ -1,6 +1,7 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
 import { projectPalette, vars } from '~/styles/tokens.css';
+import { displayFace } from '~/styles/typography.css';
 
 export const rail = style({
   flex: 'none',
@@ -14,7 +15,7 @@ export const rail = style({
   gap: '6px',
   padding: '18px 0',
   background: vars.bgSubtle,
-  borderRight: `1px solid ${vars.line}`,
+  borderRight: `1px solid ${vars.lineRail}`,
 });
 
 export const home = style({
@@ -90,10 +91,11 @@ const tileBase = {
 
 export const tile = style({
   ...tileBase,
-  // 타일 위 글자는 항상 ink — 단, 파스텔 타일은 두 테마 공통이라 다크에서도 진한 글자를 쓴다
-  color: vars.onAccent,
+  // 타일 색이 테마마다 바뀌므로 글자도 on-project 로 따라 바꾼다 (라이트: 진한 남색, 다크: 밝은 색)
+  ...displayFace,
+  color: vars.onProject,
   fontSize: '18px',
-  fontWeight: 800,
+  letterSpacing: 0,
   // 라일락·페리윙클은 레일 바탕과 밝기가 비슷해서 얇은 테두리로 가장자리를 세운다
   boxShadow: '0 0 0 1px rgba(28, 24, 48, 0.08)',
 });
@@ -106,7 +108,7 @@ export const tileActive = style({
 
 export const addTile = style({
   ...tileBase,
-  border: `1.5px dashed ${vars.lineStrong}`,
+  border: `1.5px dashed ${vars.lineDashed}`,
   background: 'transparent',
   color: vars.inkMuted,
   fontSize: '18px',

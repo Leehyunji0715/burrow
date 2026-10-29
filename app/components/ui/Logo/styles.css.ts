@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 import { vars } from '~/styles/tokens.css';
+import { fontLogo } from '~/styles/typography.css';
 
 export const root = style({
   display: 'inline-flex',
@@ -13,7 +14,8 @@ export const body = style({ fill: vars.accent });
 export const line = style({ fill: vars.brandText });
 
 export const wordmark = style({
-  fontSize: '20px',
-  fontWeight: 800,
-  letterSpacing: '-0.02em',
+  fontFamily: fontLogo,
+  fontSize: '22px',
+  fontWeight: 700,
+  letterSpacing: '-0.01em',
 });

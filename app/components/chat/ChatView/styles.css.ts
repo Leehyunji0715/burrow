@@ -63,8 +63,7 @@ export const unreadDivider = style({
       content: '""',
       flex: 1,
       height: '1.5px',
-      background: vars.unread,
-      opacity: 0.5,
+      background: vars.unreadLine,
     },
   },
 });
@@ -157,7 +156,7 @@ export const imageCard = style({
   padding: '10px',
   borderRadius: '14px',
   border: `1px solid ${vars.brandTint}`,
-  background: `repeating-linear-gradient(45deg, ${vars.brandSoft} 0 12px, ${vars.bgRaised} 12px 24px)`,
+  background: `repeating-linear-gradient(45deg, ${vars.placeholderA} 0 12px, ${vars.placeholderB} 12px 24px)`,
   fontSize: '12px',
   color: vars.inkMuted,
 });

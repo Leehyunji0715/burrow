@@ -88,7 +88,7 @@ export const dropzone = style({
   justifyContent: 'center',
   gap: vars.space3,
   padding: vars.space6,
-  border: `1.5px dashed ${vars.lineStrong}`,
+  border: `1.5px dashed ${vars.lineDashed}`,
   borderRadius: vars.radiusXl,
   background: vars.bgRaised,
   color: vars.inkMuted,

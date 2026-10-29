@@ -51,9 +51,6 @@ export function LandingPage() {
             <Logo withWordmark />
           </Link>
           <nav aria-label='주요 메뉴' className={styles.nav}>
-            <a href='#features' className={styles.navLink}>
-              기능
-            </a>
             <Link to={paths.login} className={styles.loginLink}>
               로그인
             </Link>
@@ -64,11 +61,10 @@ export function LandingPage() {
           <div className={styles.heroCopy}>
             <p className={styles.badge}>프로젝트 단위 협업 툴</p>
             <h1 className={styles.heroTitle}>
-              일 이야기는 프로젝트에 묶여서,
-              <br />
-              맥락을 잃지 않아요.
+              프로젝트마다,
+              <br />굴 하나씩.
             </h1>
-            <p className={styles.heroSub}>실시간 채팅 · 프로젝트별 파일 · 공지</p>
+            <p className={styles.heroSub}>채팅 · 파일 · 공지, 프로젝트 하나에</p>
             <div>
               <Button asChild size='lg' pill>
                 <Link to={paths.signup}>
