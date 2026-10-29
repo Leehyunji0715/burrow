@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- 모바일 브라우저 상단 바 색. 테마가 정해지면 아래 스크립트와 applyTheme 이 바꾼다 -->
+    <meta name="theme-color" content="#F8F7FB" />
     <link rel="icon" href="/favicon.ico" />
     <title>Burrow</title>
     <script>
@@ -16,6 +18,10 @@
             saved === 'dark' ||
             (saved !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
           document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+          // 값은 tokens 의 bg (app/theme/theme.ts 의 themeColor 와 같아야 한다)
+          document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute('content', dark ? '#121022' : '#F8F7FB');
         } catch (e) {
           // localStorage 가 막힌 환경(시크릿 모드 일부)에서는 :root 기본값(라이트)을 쓴다.
         }

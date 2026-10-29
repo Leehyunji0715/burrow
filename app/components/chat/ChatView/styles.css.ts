@@ -33,7 +33,15 @@ export const actions = style({ display: 'flex', alignItems: 'center', gap: vars.
 export const scroller = style({
   flex: 1,
   overflowY: 'auto',
+  // 끝까지 스크롤해도 바깥(페이지)까지 같이 밀리지 않게 한다
+  overscrollBehavior: 'contain',
   background: vars.bg,
+});
+
+export const empty = style({
+  padding: `${vars.space10} ${vars.space6}`,
+  textAlign: 'center',
+  color: vars.inkMuted,
 });
 
 export const list = style({

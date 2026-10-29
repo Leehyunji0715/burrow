@@ -72,6 +72,8 @@ export const badge = style({
 });
 
 export const heroTitle = style({
+  // 줄 길이를 고르게 맞춰 마지막 줄에 한두 글자만 남지 않게 한다
+  textWrap: 'balance',
   ...displayFace,
   fontSize: 'clamp(40px, 5vw, 56px)',
   lineHeight: 1.2,
@@ -195,6 +197,7 @@ export const eyebrow = style({
 });
 
 export const sectionTitle = style({
+  textWrap: 'balance',
   ...displayFace,
   fontSize: 'clamp(26px, 3vw, 36px)',
   textAlign: 'center',

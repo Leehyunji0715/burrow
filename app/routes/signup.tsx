@@ -26,11 +26,11 @@ export default function Signup() {
     <AuthLayout
       brand={
         <>
-          <h2 className={layout.brandTitle}>
+          <p className={layout.brandTitle}>
             1분이면
             <br />
             프로젝트 공간이 생겨요.
-          </h2>
+          </p>
           <ol className={layout.brandSteps}>
             {steps.map((s, i) => (
               <li key={s} className={layout.brandStep}>

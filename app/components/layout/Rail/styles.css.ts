@@ -31,6 +31,8 @@ export const rail = style({
       borderRight: 0,
       borderTop: `1px solid ${vars.lineRail}`,
       scrollbarWidth: 'none',
+      // 오른쪽 끝에 고정된 프로필 버튼이 키보드로 포커스한 타일을 가리지 않도록 그만큼 비워 두고 스크롤한다
+      scrollPaddingInlineEnd: '72px',
     },
   },
 });
@@ -125,6 +127,7 @@ export const tile = style({
   letterSpacing: 0,
   // 라일락·페리윙클은 레일 바탕과 밝기가 비슷해서 얇은 테두리로 가장자리를 세운다
   boxShadow: '0 0 0 1px rgba(28, 24, 48, 0.08)',
+  selectors: { '&:hover': { filter: 'brightness(0.94)' } },
 });
 
 export const tileColor = styleVariants(projectPalette, (c) => ({ background: c.tile }));

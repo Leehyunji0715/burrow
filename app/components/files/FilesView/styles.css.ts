@@ -38,6 +38,15 @@ export const filter = style({
   background: vars.bgRaised,
   color: vars.inkSecondary,
   fontWeight: 500,
+  selectors: {
+    '&:hover': { borderColor: vars.lineStrong, background: vars.brandFaint, color: vars.ink },
+  },
+});
+
+export const confirmActions = style({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  gap: vars.space2,
 });
 
 // 선택된 필터 칩은 night (디자인 시스템: 어두운 강조 면)
@@ -100,6 +109,7 @@ export const dropzone = style({
 export const dropIcon = style({ fontSize: '22px', color: vars.brand });
 
 export const tableWrap = style({
+  containerType: 'inline-size',
   overflowX: 'auto',
   border: `1px solid ${vars.line}`,
   borderRadius: vars.radiusXl,
@@ -132,11 +142,15 @@ globalStyle(`${table} tbody tr:last-child td`, { borderBottom: 0 });
 export const nameTd = style({
   width: '100%',
   maxWidth: 0,
-  '@media': { [mobile]: { minWidth: '140px' } },
+  // 다른 칸에 밀려 이름이 한두 글자만 남지 않게 최소 폭을 둔다 (부족하면 표가 가로로 스크롤된다)
+  minWidth: '160px',
 });
 
-// 좁은 화면에서는 이름·크기·작업만 남긴다. 올린 사람과 날짜는 덜 급한 정보다
-export const optionalCol = style({ '@media': { [mobile]: { display: 'none' } } });
+// 표가 놓인 자리가 좁으면 이름·크기·작업만 남긴다. 올린 사람과 날짜는 덜 급한 정보다.
+// 화면 너비가 아니라 표 자리의 너비를 본다 (container query) — 사이드바를 넓히면 데스크톱에서도 좁아지기 때문이다
+export const optionalCol = style({
+  '@container': { '(max-width: 640px)': { display: 'none' } },
+});
 
 export const nameCell = style({
   display: 'flex',

@@ -32,6 +32,10 @@ export function resolveTheme(preference: ThemePreference, systemDark: boolean): 
   return preference;
 }
 
+/** 모바일 브라우저 상단 바 색 = 테마의 bg 토큰 (index.html 인라인 스크립트와 같은 값) */
+const themeColor: Record<ResolvedTheme, string> = { light: '#F8F7FB', dark: '#121022' };
+
 export function applyTheme(theme: ResolvedTheme) {
   document.documentElement.dataset.theme = theme;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColor[theme]);
 }

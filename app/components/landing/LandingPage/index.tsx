@@ -124,7 +124,7 @@ export function LandingPage() {
       </section>
 
       <footer className={styles.footer}>
-        <span>© Burrow</span>
+        <span translate='no'>© Burrow</span>
         <a href='https://github.com/Leehyunji0715/burrow' className={styles.footerLink}>
           GitHub
         </a>

@@ -23,6 +23,29 @@ export const app = style({
   },
 });
 
+export const main = style({
+  flex: 1,
+  minWidth: 0,
+  minHeight: 0,
+  display: 'flex',
+  outline: 'none',
+});
+
+export const skipLink = style({
+  position: 'absolute',
+  top: vars.space2,
+  left: vars.space2,
+  zIndex: 100,
+  padding: `${vars.space2} ${vars.space4}`,
+  borderRadius: vars.radiusMd,
+  background: vars.night,
+  color: vars.onBrand,
+  fontWeight: 700,
+  // 평소에는 화면 밖에 두고, 포커스를 받으면 보인다
+  transform: 'translateY(-200%)',
+  selectors: { '&:focus-visible': { transform: 'none' } },
+});
+
 export const content = style({
   flex: 1,
   minWidth: 0,
@@ -33,6 +56,7 @@ export const content = style({
       flexDirection: 'column',
       minHeight: 0,
       overflowY: 'auto',
+      overscrollBehavior: 'contain',
     },
   },
 });

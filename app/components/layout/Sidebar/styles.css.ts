@@ -32,6 +32,7 @@ export const sidebar = style({
 export const scroll = style({
   height: '100%',
   overflowY: 'auto',
+  overscrollBehavior: 'contain',
   display: 'flex',
   flexDirection: 'column',
   paddingBottom: vars.space4,

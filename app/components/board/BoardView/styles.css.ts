@@ -49,6 +49,14 @@ export const columns = style({
   '@media': { 'screen and (max-width: 1100px)': { gridTemplateColumns: 'minmax(0, 1fr)' } },
 });
 
+export const empty = style({
+  padding: vars.space10,
+  border: `1.5px dashed ${vars.lineDashed}`,
+  borderRadius: vars.radiusXl,
+  textAlign: 'center',
+  color: vars.inkMuted,
+});
+
 export const posts = style({ display: 'flex', flexDirection: 'column', gap: vars.space4 });
 
 export const post = style({

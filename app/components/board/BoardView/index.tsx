@@ -76,6 +76,9 @@ export function BoardView({ projectName, posts, members, findUser, onAck, onWrit
 
       <div className={styles.columns}>
         <section aria-label='게시글' className={styles.posts}>
+          {posts.length === 0 && (
+            <p className={styles.empty}>아직 글이 없어요. 첫 공지를 올려 멤버들과 공유해 보세요.</p>
+          )}
           {posts.map((post) => {
             const author = findUser(post.authorId);
             return (
