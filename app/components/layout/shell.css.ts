@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 import { vars } from '~/styles/tokens.css';
+import { displayFace } from '~/styles/typography.css';
 
 /** 앱 화면 전체: 레일 | 목록 열 | 본문 */
 export const app = style({
@@ -32,7 +33,7 @@ export const notFound = style({
   gap: vars.space5,
 });
 
-export const notFoundTitle = style({ fontSize: '26px', fontWeight: 800 });
+export const notFoundTitle = style({ ...displayFace, fontSize: '26px' });
 
 export const empty = style({
   flex: 1,

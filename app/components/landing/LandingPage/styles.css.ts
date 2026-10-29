@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 import { vars } from '~/styles/tokens.css';
+import { displayFace } from '~/styles/typography.css';
 
 const container = {
   maxWidth: '1200px',
@@ -34,12 +35,6 @@ export const header = style({
 });
 
 export const nav = style({ display: 'flex', alignItems: 'center', gap: vars.space2 });
-
-export const navLink = style({
-  padding: '10px 14px',
-  fontSize: '15px',
-  fontWeight: 500,
-});
 
 export const loginLink = style({
   padding: '10px 16px',
@@ -77,10 +72,9 @@ export const badge = style({
 });
 
 export const heroTitle = style({
-  fontSize: 'clamp(36px, 5vw, 56px)',
-  lineHeight: 1.18,
-  fontWeight: 800,
-  letterSpacing: '-0.03em',
+  ...displayFace,
+  fontSize: 'clamp(40px, 5vw, 56px)',
+  lineHeight: 1.2,
 });
 
 export const heroSub = style({ fontSize: '20px', fontWeight: 500 });
@@ -139,7 +133,7 @@ export const previewAvatar = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  color: vars.onAccent,
+  color: vars.onProject,
   fontSize: '12px',
   fontWeight: 700,
 });
@@ -201,9 +195,8 @@ export const eyebrow = style({
 });
 
 export const sectionTitle = style({
+  ...displayFace,
   fontSize: 'clamp(26px, 3vw, 36px)',
-  fontWeight: 800,
-  letterSpacing: '-0.02em',
   textAlign: 'center',
 });
 
@@ -230,7 +223,7 @@ export const featureIcon = style({
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: '14px',
-  background: vars.brandSoft,
+  background: vars.brandSelected,
   color: vars.brand,
   fontSize: '26px',
 });

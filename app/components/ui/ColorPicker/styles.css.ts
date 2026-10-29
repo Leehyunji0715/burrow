@@ -35,4 +35,4 @@ export const radio = style({
   cursor: 'pointer',
 });
 
-export const check = style({ color: vars.onAccent, fontSize: '18px', pointerEvents: 'none' });
+export const check = style({ color: vars.onProject, fontSize: '18px', pointerEvents: 'none' });

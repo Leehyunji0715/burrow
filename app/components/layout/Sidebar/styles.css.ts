@@ -13,7 +13,7 @@ export const sidebar = style({
   flexDirection: 'column',
   paddingBottom: vars.space4,
   background: vars.brandSoft,
-  borderRight: `1px solid ${vars.brandTint}`,
+  borderRight: `1px solid ${vars.lineSidebar}`,
   vars: { '--avatar-ring': vars.brandSoft },
 });
 

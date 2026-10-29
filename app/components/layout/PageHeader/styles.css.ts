@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 import { vars } from '~/styles/tokens.css';
+import { displayFace } from '~/styles/typography.css';
 
 export const header = style({
   display: 'flex',
@@ -10,6 +11,6 @@ export const header = style({
   gap: vars.space4,
 });
 
-export const title = style({ fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' });
+export const title = style({ ...displayFace, fontSize: '26px' });
 
 export const description = style({ fontSize: '14px', color: vars.inkMuted });
