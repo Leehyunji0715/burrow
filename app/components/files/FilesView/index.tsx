@@ -97,10 +97,13 @@ export function FilesView({ projectName, files, findUser, onUpload, onDelete }: 
           <tbody>
             {visible.map((f) => (
               <tr key={f.id}>
-                <td>
+                <td className={styles.nameTd}>
                   <span className={styles.nameCell}>
                     <span className={styles.ext}>{f.ext}</span>
-                    <span className={styles.fileName}>{f.name}</span>
+                    {/* 긴 이름은 한 줄로 자르고, 마우스를 올리면 전체 이름을 보여준다 */}
+                    <span className={styles.fileName} title={f.name}>
+                      {f.name}
+                    </span>
                   </span>
                 </td>
                 <td className={styles.num}>{f.size}</td>

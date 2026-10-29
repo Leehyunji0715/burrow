@@ -14,6 +14,7 @@ export const root = style({
 export const header = style({
   minHeight: '68px',
   padding: `12px ${vars.space6}`,
+  '@media': { 'screen and (max-width: 899px)': { padding: `10px ${vars.space4}` } },
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
@@ -37,6 +38,7 @@ export const list = style({
   flexDirection: 'column',
   gap: '18px',
   padding: `${vars.space5} ${vars.space6}`,
+  '@media': { 'screen and (max-width: 899px)': { padding: vars.space4 } },
 });
 
 const line = {
@@ -144,8 +146,14 @@ export const fileIcon = style({
 });
 
 export const fileText = style({ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' });
-export const fileName = style({ fontSize: '14px', fontWeight: 600 });
-export const fileSize = style({ fontSize: '12px', color: vars.inkSubtle });
+export const fileName = style({
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  fontSize: '14px',
+  fontWeight: 600,
+});
+export const fileSize = style({ fontSize: '12px', color: vars.inkSubtle, whiteSpace: 'nowrap' });
 
 export const imageCard = style({
   width: '300px',
@@ -163,6 +171,7 @@ export const imageCard = style({
 
 export const composerForm = style({
   padding: `14px ${vars.space6} ${vars.space5}`,
+  '@media': { 'screen and (max-width: 899px)': { padding: `10px ${vars.space3}` } },
   borderTop: `1px solid ${vars.line}`,
 });
 

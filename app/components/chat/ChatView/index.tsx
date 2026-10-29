@@ -107,7 +107,9 @@ export function ChatView({
                         <LuFileText />
                       </span>
                       <span className={styles.fileText}>
-                        <span className={styles.fileName}>{message.attachment.name}</span>
+                        <span className={styles.fileName} title={message.attachment.name}>
+                          {message.attachment.name}
+                        </span>
                         <span className={styles.fileSize}>{message.attachment.size}</span>
                       </span>
                       <IconButton label={`${message.attachment.name} 다운로드`}>

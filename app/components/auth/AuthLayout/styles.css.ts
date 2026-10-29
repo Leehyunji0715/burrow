@@ -21,6 +21,7 @@ export const brandPanel = style({
   justifyContent: 'space-between',
   gap: vars.space10,
   padding: `48px ${vars.space14}`,
+  '@media': { 'screen and (max-width: 899px)': { minHeight: 'auto', padding: vars.space6 } },
   background: `linear-gradient(90deg, ${vars.tintStart} 0%, ${vars.tintEnd} 100%)`,
 });
 
@@ -38,6 +39,8 @@ export const orbLarge = style({
   width: '460px',
   height: '460px',
   background: `linear-gradient(135deg, ${vars.gradientStart} 0%, ${vars.gradientEnd} 100%)`,
+  // 좁은 화면에서는 패널이 낮아져 이 원이 글자 밑으로 들어온다. 그라데이션 위에 글자를 올리지 않는 규칙을 지키려고 숨긴다
+  '@media': { 'screen and (max-width: 899px)': { display: 'none' } },
 });
 
 export const orbSmall = style({
@@ -72,7 +75,7 @@ export const formArea = style({
 
 export const brandTitle = style({
   ...displayFace,
-  fontSize: '40px',
+  fontSize: 'clamp(30px, 4vw, 40px)',
   lineHeight: 1.3,
 });
 

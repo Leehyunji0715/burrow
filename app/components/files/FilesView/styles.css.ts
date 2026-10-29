@@ -11,6 +11,7 @@ export const page = style({
   gap: vars.space5,
   padding: `${vars.space8} ${vars.space8} ${vars.space10}`,
   background: vars.bg,
+  '@media': { 'screen and (max-width: 899px)': { padding: vars.space4 } },
 });
 
 export const toolbar = style({
@@ -118,13 +119,23 @@ globalStyle(`${table} th`, {
 
 globalStyle(`${table} td`, {
   padding: '8px 16px',
+  // 전역의 overflow-wrap: anywhere 때문에 좁은 칸에서 글자가 세로로 쌓이지 않게 한 줄로 둔다
+  whiteSpace: 'nowrap',
   borderBottom: `1px solid ${vars.line}`,
   color: vars.inkSecondary,
 });
 
 globalStyle(`${table} tbody tr:last-child td`, { borderBottom: 0 });
 
-export const nameCell = style({ display: 'flex', alignItems: 'center', gap: vars.space3 });
+// 이름 칸이 남는 폭을 모두 차지하고, 넘치면 말줄임으로 자른다 (max-width: 0 은 표 칸에서 말줄임을 켜는 관용구)
+export const nameTd = style({ width: '100%', maxWidth: 0 });
+
+export const nameCell = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: vars.space3,
+  minWidth: 0,
+});
 
 export const ext = style({
   flex: 'none',
@@ -140,7 +151,13 @@ export const ext = style({
   fontWeight: 800,
 });
 
-export const fileName = style({ fontWeight: 600, color: vars.ink });
+export const fileName = style({
+  minWidth: 0,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  fontWeight: 600,
+  color: vars.ink,
+});
 
 export const num = style({ fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' });
 

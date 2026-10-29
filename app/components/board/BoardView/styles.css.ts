@@ -11,6 +11,7 @@ export const page = style({
   padding: `${vars.space8} ${vars.space8} ${vars.space10}`,
   background: vars.bg,
   minHeight: '100vh',
+  '@media': { 'screen and (max-width: 899px)': { padding: vars.space4 } },
 });
 
 export const summary = style({
